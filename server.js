@@ -40,10 +40,7 @@ app.set('view engine', 'handlebars');
 app.use(favicon(path.join(__dirname, 'public/img', 'favicon.ico')));
 
 // require Routes with app.use
-app.use(require('./controllers/trekmate_controller'));
-
-// require("./routes/html-routes.js")(app);
-// require("./routes/api-routes.js")(app);
+app.use(require('./controllers'));
 
 // Syncing our sequelize models and then starting our express app
 // force: true to allow structure modifications in our database,
