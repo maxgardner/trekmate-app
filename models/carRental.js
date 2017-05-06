@@ -11,5 +11,19 @@ module.exports = function(sequelize, DataTypes) {
              allowNull: false, 
              validate: { len: [1]}
          }
-    })
-}
+    },{
+        classMethods: { 
+                 associate: function(models) { 
+                    CarRental.belongsTo(models.Trip, 
+                    {
+                        onDelete: "cascade", 
+                        foreignKey: { 
+                            allowNull: false
+                            } 
+                        }); 
+                    }
+                 }
+             });
+        
+             return CarRental;
+};

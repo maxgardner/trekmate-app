@@ -1,22 +1,37 @@
 module.exports = function(sequelize, DataTypes) { 
-    var Trips = sequelize.define("Activities", { 
+    var Activity = sequelize.define("Activities", { 
          id: { 
             type: DataTypes.INTEGER, 
             allowNull: false, 
             primaryKey: true,
             autoIncrement: true
          }, 
-         Activity_Name: { 
+         activity_name: { 
              type: DataTypes.STRING,    
              allowNull: false, 
          },
-         Description: { 
+         description: { 
              type: DataTypes.STRING, 
              allowNull: false
          }, 
-         Time_of_Event: { 
+         time_of_event: { 
              type: DataTypes.TIME, 
              allowNull: false, 
          }
-    })
-}  
+    },
+    {
+        classMethods: { 
+                    associate: function(models) { 
+                        Activity.belongsTo(models.Trip, 
+                        {
+                            onDelete: "cascade", 
+                            foreignKey: { 
+                                allowNull: false
+                                } 
+                            }); 
+                        }
+                    }
+                });
+            
+                return Destination;
+    };

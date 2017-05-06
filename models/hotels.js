@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) { 
-    var Hotels = sequelize.define("Hotels", { 
+    var Hotel = sequelize.define("Hotels", { 
         id: { 
             type: DataTypes.INTEGER, 
             allowNull: false, 
@@ -19,5 +19,20 @@ module.exports = function(sequelize, DataTypes) {
              type: Datatypes.TIME, 
              allowNull: true
          }
-    })
-}
+    },  
+        { 
+             classMethods: { 
+                 associate: function(models) { 
+                    Hotel.belongsTo(models.Trip, 
+                    {
+                        onDelete: "cascade", 
+                        foreignKey: { 
+                            allowNull: false
+                            } 
+                        }); 
+                    }
+                 }
+             });
+        
+         return Hotel;
+};
