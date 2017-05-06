@@ -1,3 +1,4 @@
+
 module.exports = function(sequelize, DataTypes) { 
     var CarRental = sequelize.define("Car_Rental", { 
         id: { 
