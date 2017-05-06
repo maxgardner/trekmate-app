@@ -1,27 +1,28 @@
 module.exports = function (sequelize, Datatypes) {
-    var CarRental = sequelize.define("CarRental", {
-            Rental_Comp: {
+    var Trip = sequelize.define("Trip", {
+            uuid: {
+                type: Datatypes.UUID,
+                primaryKey: true
+            },
+            Departing_To: {
                 type: Datatypes.STRING,
                 allowNull: false,
                 validate: {
                     len: [1]
                 }
             },
-            Rental_Address: {
-                type: Datatypes.STRING,
-                allowNull: true
-            },
-            Rental_Date: {
+            Departure_Date: {
                 type: Datatypes.DATE,
-                allowNull: true
+                allowNull: false
             },
-            Rental_Return: {
+            Return_Date: {
                 type: Datatypes.DATE,
-                allowNull: true
+                allowNull: false
             }
-        },
+            },
         {// Associations
 
         });
-    return CarRental;
+    return Trip;
+
 };
