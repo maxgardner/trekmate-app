@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) { 
-    var Destinations = sequelize.define("Destinations", { 
+    var Destination = sequelize.define("Destinations", { 
             id: { 
                 type: DataTypes.INTEGER, 
                 allowNull: false, 
@@ -22,7 +22,20 @@ module.exports = function(sequelize, DataTypes) {
                 type: DataTypes.INTEGER, 
                 allowNull: false
             }
-    })
-}
-
+        },
+        { 
+             classMethods: { 
+                 associate: function(models) { 
+                    Destination.belongsTo(models.Trip, 
+                    {
+                        onDelete: "cascade", 
+                        foreignKey: { 
+                            allowNull: false
+                            } 
+                        }); 
+                    }
+                 }
+             });
+             return Destination;
+};
             

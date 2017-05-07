@@ -12,7 +12,8 @@ app.set('port', process.env.PORT || 8080);
 // var port = process.env.PORT || 8080;
 
 // database models for syncing
-var db = require("./models");
+var db = require('./models');
+
 
 // Serve static content
 app.use(express.static(process.cwd() + '/public'));
@@ -40,6 +41,7 @@ app.use(favicon(path.join(__dirname, 'public/img', 'favicon.ico')));
 // app.use(require('./controllers'));
 app.use(require('./controllers/trekmate_controller'));
 app.use(require('./controllers/api_user'));
+app.use(require('./controllers/api_flight'));
 
 // Import Passport authentication
 var passport = require("./config/passport");
@@ -48,8 +50,10 @@ var passport = require("./config/passport");
 // force: true to allow structure modifications in our database,
 // this is the case with associations
 
-db.sequelize.sync({ force: true }).then(function () {
+db.sequelize.sync({ force: false }).then(function () {
     var server = app.listen(app.get('port'), function () {
         console.log('Listening on port ' + app.get('port'));
+        console.log(db.Trip);
     });
 });
+

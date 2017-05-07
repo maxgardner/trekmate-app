@@ -1,27 +1,29 @@
-module.exports = function (sequelize, Datatypes) {
-    var CarRental = sequelize.define("CarRental", {
-            Rental_Comp: {
-                type: Datatypes.STRING,
-                allowNull: false,
-                validate: {
-                    len: [1]
-                }
-            },
-            Rental_Address: {
-                type: Datatypes.STRING,
-                allowNull: true
-            },
-            Rental_Date: {
-                type: Datatypes.DATE,
-                allowNull: true
-            },
-            Rental_Return: {
-                type: Datatypes.DATE,
-                allowNull: true
+module.exports = function(sequelize, DataTypes) { 
+    var CarRental = sequelize.define("Car_Rental", { 
+        id: { 
+            type: DataTypes.INTEGER, 
+            allowNull: false, 
+            primaryKey: true,
+            autoIncrement: true
+         },
+         Rental_Comp: { 
+             type: DataTypes.STRING, 
+                    allowNull: false, 
+                    validate: { len: [1]}
+         }, 
+    },
+    {   
+        classMethods: { 
+            associate: function(models) { 
+                CarRental.belongsTo(models.Trip, 
+                {
+                    onDelete: "cascade", 
+                    foreignKey: {
+                        allowNull: false
+                    }
+                });
             }
-        },
-        {// Associations
-
-        });
+        }  
+    });
     return CarRental;
 };
