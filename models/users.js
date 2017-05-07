@@ -1,5 +1,5 @@
-module.exports = function(seqelize, DataTypes) { 
-    var User = sequelize.define("Users", { 
+module.exports = function(sequelize, DataTypes) { 
+    var User = sequelize.define("User", { 
         id: { 
             type: DataTypes.INTEGER, 
             allowNull: false, 
@@ -33,7 +33,18 @@ module.exports = function(seqelize, DataTypes) {
          facebook_link: { 
              type: DataTypes.STRING, 
              allowNull: true
-         }   
+         }
+    },
+    
+        {
+        classMethods: { 
+            associate: function(models) {
+                User.belongsTo(models.Trip, {constraints: false});
+                
+            },
+            
+        
+        }
     });
-    return Users;
+    return User;
 };

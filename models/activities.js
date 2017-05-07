@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) { 
-    var Activity = sequelize.define("Activities", { 
+    var Activity = sequelize.define("Activity", { 
          id: { 
             type: DataTypes.INTEGER, 
             allowNull: false, 
@@ -33,5 +33,5 @@ module.exports = function(sequelize, DataTypes) {
                     }
                 });
             
-                return Destination;
+                return Activity;
     };

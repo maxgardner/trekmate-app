@@ -7,16 +7,16 @@ module.exports = function(sequelize, DataTypes) {
             autoIncrement: true
          }, 
          hotel_name: { 
-             type: Datatypes.STRING, 
+             type: DataTypes.STRING, 
              allowNull: false, 
              validate: {len: [1]}
          },
          address: { 
-             type: Datatypes.STRING, 
+             type: DataTypes.STRING, 
              allowNull: true, 
          }, 
          checkIn_Time: { 
-             type: Datatypes.TIME, 
+             type: DataTypes.TIME, 
              allowNull: true
          }
     },  

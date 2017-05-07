@@ -12,7 +12,8 @@ app.set('port', process.env.PORT || 8080);
 // var port = process.env.PORT || 8080;
 
 // database models for syncing
-var db = require("./models");
+var db = require('./models');
+
 
 // Serve static content
 app.use(express.static(process.cwd() + '/public'));
@@ -51,5 +52,7 @@ app.use(require('./controllers/api_user'));
 db.sequelize.sync({ force: true }).then(function () {
     var server = app.listen(app.get('port'), function () {
         console.log('Listening on port ' + app.get('port'));
+        console.log(db.Trip);
     });
 });
+

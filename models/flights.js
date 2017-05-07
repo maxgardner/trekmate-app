@@ -10,10 +10,10 @@ module.exports = function(sequelize, DataTypes) {
              type: DataTypes.INTEGER, 
              allowNull: false
          }, 
-         status: { 
-             type: DataTypes.STRING, 
-             allowNull: true 
-         }, 
+         city_departure: { 
+             type: DataTypes.INTEGER, 
+             allowNull: false
+         },
          arrival_time: { 
              type: DataTypes.TIME,
              allowNull: true
