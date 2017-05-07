@@ -1,9 +1,9 @@
 module.exports = function (sequelize, Datatypes) {
     var Trip = sequelize.define("Trip", {
-            uuid: {
-                type: Datatypes.UUID,
-                primaryKey: true
-            },
+            // uuid: {
+            //     type: Datatypes.UUID,
+            //     primaryKey: true
+            // },
             Departing_To: {
                 type: Datatypes.STRING,
                 allowNull: false,
@@ -21,8 +21,13 @@ module.exports = function (sequelize, Datatypes) {
             }
             },
         {// Associations
-
+            classMethods: {
+                associate: function (models) {
+                    Trip.hasMany(models.Flight, {
+                        onDelete: "cascade"
+                    });
+                }
+            }
         });
     return Trip;
-
 };

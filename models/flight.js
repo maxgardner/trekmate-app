@@ -4,17 +4,22 @@ module.exports = function (sequelize, Datatypes) {
                 type: Datatypes.STRING,
                 allowNull: false
             },
-            status: {
-                type: Datatypes.STRING,
-                allowNull: true
-            },
-            arrival_time: {
-                type: Datatypes.TIME,
+            flight_date: {
+                type: Datatypes.DATE,
                 allowNull: true
             }
         },
         {// Associations
-
+            classMethods: {
+                associate: function (models) {
+                    Flight.belongsTo(models.Trip, {
+                        foreignKey: {
+                            allowNull: true
+                            // foreignKey created TripUuid
+                        }
+                    });
+                }
+            }
         });
     return Flight;
 };
