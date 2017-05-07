@@ -6,7 +6,7 @@ router.get("/api/user/id", function (req, res) {
   res.render("index");
 });
 
-router.get("/api/")
+router.get("/api/");
 
 
 module.exports = router;
