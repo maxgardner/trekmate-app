@@ -1,49 +1,70 @@
-module.exports = function(sequelize, DataTypes) { 
-    var User = sequelize.define("User", { 
-        id: { 
-            type: DataTypes.INTEGER, 
-            allowNull: false, 
+// Require bycrypt to create a hash to compare password against
+var bcrypt = require("bcrypt-nodejs");
+
+module.exports = function(sequelize, DataTypes) {
+    var User = sequelize.define("User", {
+        id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
             primaryKey: true,
             autoIncrement: true
          },
-         first_name:{ 
-            type: DataTypes.STRING, 
+         first_name:{
+            type: DataTypes.STRING,
             allowNull: false,
             validate: { len: [1]}
-         }, 
-         last_name: { 
-             type: DataTypes.STRING, 
+         },
+         last_name: {
+             type: DataTypes.STRING,
              allowNull: false,
              validate: { len: [1]}
          },
-         email_address: { 
+         email: {
              type: DataTypes.STRING,
              allowNull: false,
-             validate: {len: [1]}
-         }, 
-         phone_number: { 
-            type: DataTypes.INTEGER, 
-            allowNull: true, 
+             validate: {len: [1], isEmail: true}
+         },
+         password: {
+          type: DataTypes.STRING,
+          allowNull: false
+         }
+         phone_number: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
             validate: { len: [10]}
          },
          twitter_link: {
-             type: DataTypes.STRING, 
-             allowNull: true, 
-         }, 
-         facebook_link: { 
-             type: DataTypes.STRING, 
+             type: DataTypes.STRING,
+             allowNull: true,
+         },
+         facebook_link: {
+             type: DataTypes.STRING,
              allowNull: true
          }
     },
-    
+
         {
-        classMethods: { 
+
+        classMethods: {
             associate: function(models) {
                 User.belongsTo(models.Trip, {constraints: false});
-                
+
             },
-            
-        
+        }
+        instanceMethods: {
+          validPassword: function(password) {
+            return bcrypt.compareSync(password, this.password);
+          }
+        },
+
+        // Before a User is created, we will automatically hash their password
+        hooks: {
+          beforeCreate: function(user, options, cb) {
+            user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
+            cb(null, options);
+          }
+        }
+
         }
     });
     return User;

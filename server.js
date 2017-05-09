@@ -14,11 +14,8 @@ app.set('port', process.env.PORT || 8080);
 // database models for syncing
 var db = require('./models');
 
-
 // Serve static content
 app.use(express.static(process.cwd() + '/public'));
-// Serve static files in the public directory
-//app.use(express.static(path.join(__dirname, 'public')));
 
 // Set up the Express app to handle data parsing
 app.use(bodyParser.json());
@@ -34,17 +31,26 @@ var exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
+// Set up sessions and then initialize Passport to enable authentication
+var session = require("express-session");
+var passport = require("./config/passport");
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
 // favicon in /publicear
 app.use(favicon(path.join(__dirname, 'public/img', 'favicon.ico')));
 
 // require Routes with app.use
 // app.use(require('./controllers'));
 app.use(require('./controllers/trekmate_controller'));
-app.use(require('./controllers/api_user'));
 app.use(require('./controllers/api_flight'));
-
-// Import Passport authentication
-var passport = require("./config/passport");
+app.use(require('./routes/api_activity.js'));
+app.use(require('./routes/api_destination.js'));
+app.use(require('./routes/api_trips.js'));
+app.use(require('./routes/dashboard.js'));
+app.use(require('./routes/login.js'));
+app.use(require('./routes/trip.js'));
 
 // Syncing our sequelize models and then starting our express app
 // force: true to allow structure modifications in our database,
@@ -56,4 +62,3 @@ db.sequelize.sync({ force: false }).then(function () {
         console.log(db.Trip);
     });
 });
-
