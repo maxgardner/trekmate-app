@@ -3,12 +3,14 @@ var router = express.Router();
 var http = require('http');
 var https = require('https');
 var db = require("../models");
+var config = require('../config/config.json');
+var dateFormat = require('dateformat');
 
 function FlightQueryURL(APIname, protocol, version, format, parameters, options) {
 
-    const baseURI = "https://api.flightstats.com/flex";
-    const appId = "?appId=c6ff30bc";
-    const appKey = "&appKey=426abb99047676f5431844082be0f85b";
+    const baseURI = config.flightStats.baseURL;
+    const appId = config.flightStats.appId;
+    const appKey = config.flightStats.appKey;
 
     var queryURL = baseURI +
         "/" + APIname +
@@ -22,14 +24,17 @@ function FlightQueryURL(APIname, protocol, version, format, parameters, options)
     return queryURL;
 }
 
-// db.Flight.findAll().then(function (dbFlight) {
-//     var hbsObject = {
-//       flights: dbFlight
-//     };
-//     res.render("flight", hbsObject);
-// });
+router.post("/flights", function (req, res) {
+    db.Flight.create({
+        flight_number: req.body.FlightNumber
+    }).then(function (dbFlight) {
+        res.redirect("/");
+    });
+});
+
 
 router.get("/flights", function (req, res) {
+
     // read tripid cookie
     var TripId = 1;
 
@@ -38,49 +43,44 @@ router.get("/flights", function (req, res) {
         where: {
             TripId: TripId
         }
-    }).then(function (dbTrip) {
-        var hbsObject = {
-            trips: dbTrip
-        };
-        // res.render("index", hbsObject);
-        res.json(hbsObject);
+    }).then(function (dbFlight) {
+
+        // flight api
+
+        var flightDate = dbFlight[0].flight_date;
+
+        var flightNumber = dbFlight[0].flight_number;
+        var flightNumberArrStr = flightNumber.split(" ");
+        var airlineCode = flightNumberArrStr[0];
+        var flight = flightNumberArrStr[1];
+        flightDate = dateFormat(flightDate, "yyyy/m/d");
+
+        // console.log(flightDate);
+        // console.log(airlineCode);
+        // console.log(flight);
+
+
+        var parameters = "flight/status/" + airlineCode + "/" + flight + "/arr/" + flightDate;
+
+        var url = FlightQueryURL("flightstatus", "rest", "v2", "json", parameters, "", "flightInfo");
+
+        var request = https.get(url, function (response) {
+            var buffer = ""
+                ,data;
+            response.on("data", function (chunk) {
+                buffer += chunk;
+            });
+
+            response.on("end", function (err) {
+                var hbsObject = {
+                    flights: dbFlight,
+                    flightStatus: JSON.parse(buffer)
+                };
+                // res.json(hbsObject);
+                res.render("flight", hbsObject);
+            });
+        });
     });
 });
-
-
-// router.get("/flights", function (req, res) {
-//     // res.send("<h1>Flights API</h1>");
-//
-//
-//     var parameters = "flight/status/" + "AA" + "/" + "5919" + "/arr/" + "2017/5/6";
-//     var url = FlightQueryURL("flightstatus", "rest", "v2", "json", parameters, "", "flightInfo");
-//
-//     var request = https.get(url, function (response) {
-//         var buffer = "",
-//             data;
-//         response.on("data", function (chunk) {
-//             buffer += chunk;
-//         });
-//
-//         response.on("end", function (err) {
-//             // console.log(buffer);
-//              // console.log("\n");
-//             data = JSON.parse(buffer);
-//             res.json(data);
-//         });
-//     });
-// });
-
-
-// router.get("/flights", function (req, res) {
-//     // res.send("<h1>Flights API</h1>");
-//
-//     db.Flight.findAll().then(function (dbFlight) {
-//         var hbsObject = {
-//           flights: dbFlight
-//         };
-//         res.render("flight", hbsObject);
-//     });
-// });
 
 module.exports = router;
