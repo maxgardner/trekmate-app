@@ -40,11 +40,11 @@ app.use(favicon(path.join(__dirname, 'public/img', 'favicon.ico')));
 // require Routes with app.use
 // app.use(require('./controllers'));
 app.use(require('./controllers/trekmate_controller'));
-app.use(require('./controllers/api_user'));
+
 app.use(require('./controllers/api_flight'));
 
 // Import Passport authentication
-var passport = require("./config/passport");
+// var passport = require("./config/passport");
 
 // Syncing our sequelize models and then starting our express app
 // force: true to allow structure modifications in our database,
