@@ -39,5 +39,6 @@ jspm_packages
 # Config files for database and APIs
 config
 
-# IDE .idea roman
+# Program folders
 .idea
+.vscode
