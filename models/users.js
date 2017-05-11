@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
          password: {
           type: DataTypes.STRING,
           allowNull: false
-         }
+         },
          phone_number: {
             type: DataTypes.INTEGER,
             allowNull: true,
@@ -43,29 +43,28 @@ module.exports = function(sequelize, DataTypes) {
          }
     },
 
-        {
+      {
 
         classMethods: {
             associate: function(models) {
                 User.belongsTo(models.Trip, {constraints: false});
 
-            },
-        }
+            }
+        },
+
         instanceMethods: {
           validPassword: function(password) {
             return bcrypt.compareSync(password, this.password);
           }
         },
 
-        // Before a User is created, we will automatically hash their password
+        // Before a user is created, we will automatically hash their password
         hooks: {
           beforeCreate: function(user, options, cb) {
             user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
             cb(null, options);
           }
         }
-
-        }
-    });
+      });
     return User;
 };

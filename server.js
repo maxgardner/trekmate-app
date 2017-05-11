@@ -12,10 +12,13 @@ app.set('port', process.env.PORT || 8080);
 // var port = process.env.PORT || 8080;
 
 // database models for syncing
-var db = require('./models');
+var db = require("./models");
 
 // Serve static content
 app.use(express.static(process.cwd() + '/public'));
+// Serve static files in the public directory
+//app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Set up the Express app to handle data parsing
 app.use(bodyParser.json());
@@ -23,34 +26,50 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
+
 // override with POST having ?_method=DELETE
 app.use(methodOverride("_method"));
 
 // set handlebars
 var exphbs = require('express-handlebars');
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+var hbs = exphbs.create({
+    // helpers : helpers,
+    defaultLayout: 'main',
+    partialsDir: [
+        //   'shared/templates/',
+        'views/partials/'
+    ]
+});
+
+//  Instead of this we are using the previous, notice defaultLayout
+// app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 // Set up sessions and then initialize Passport to enable authentication
 var session = require("express-session");
 var passport = require("./config/passport");
-app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true, cookie: {} }));
+if (app.get('env') === 'production') {
+  app.set('trust proxy', 1) // trust first proxy
+  session.cookie.secure = true // serve secure cookies
+}
 app.use(passport.initialize());
 app.use(passport.session());
 
-// favicon in /publicear
+// favicon in /public
 app.use(favicon(path.join(__dirname, 'public/img', 'favicon.ico')));
 
 // require Routes with app.use
 // app.use(require('./controllers'));
 app.use(require('./controllers/trekmate_controller'));
+require('./routes/api_activity.js')(app);
+require('./routes/api_destination.js')(app);
+require('./routes/api_trips.js')(app);
+require('./routes/dashboard.js')(app);
+require('./routes/login.js')(app);
+require('./routes/trip.js')(app);
 app.use(require('./controllers/api_flight'));
-app.use(require('./routes/api_activity.js'));
-app.use(require('./routes/api_destination.js'));
-app.use(require('./routes/api_trips.js'));
-app.use(require('./routes/dashboard.js'));
-app.use(require('./routes/login.js'));
-app.use(require('./routes/trip.js'));
 
 // Syncing our sequelize models and then starting our express app
 // force: true to allow structure modifications in our database,
@@ -59,6 +78,5 @@ app.use(require('./routes/trip.js'));
 db.sequelize.sync({ force: false }).then(function () {
     var server = app.listen(app.get('port'), function () {
         console.log('Listening on port ' + app.get('port'));
-        console.log(db.Trip);
     });
 });

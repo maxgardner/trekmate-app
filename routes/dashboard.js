@@ -1,3 +1,5 @@
+var express = require("express");
+var router = express.Router();
 var passport = require("../config/passport");
 var isAuthenticated = require("../config/isAuthenticated");
 var db = require("../models");
@@ -5,7 +7,7 @@ var db = require("../models");
 module.exports = function(app) {
   app.get("/dashboard", isAuthenticated, function(req, res) {
     if (!req.user) {
-      res.redirect("/dashboard");
+      res.redirect("/");
     }
     else {
       db.User.findOne({
@@ -14,7 +16,7 @@ module.exports = function(app) {
         },
         attributes: {
           exclude: password
-        }
+        },
         include: [db.Trip]
       })
       .then(function(userInfo) {
