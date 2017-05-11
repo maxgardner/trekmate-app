@@ -4,7 +4,8 @@
   "description": "An app to help groups enjoy the experience of a trip and avoid the pain of planning",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/.bin/mocha tests/"
+    "test": "mocha tests/",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -30,5 +31,6 @@
     "path": "^0.12.7",
     "sequelize": "^3.30.4",
     "serve-favicon": "^2.4.2"
-  }
+  },
+  "devDependencies": {}
 }
