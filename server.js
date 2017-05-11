@@ -34,7 +34,11 @@ app.set('view engine', 'handlebars');
 // Set up sessions and then initialize Passport to enable authentication
 var session = require("express-session");
 var passport = require("./config/passport");
-app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true, cookie: {} }));
+if (app.get('env') === 'production') {
+  app.set('trust proxy', 1) // trust first proxy
+  session.cookie.secure = true // serve secure cookies
+}
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -44,7 +48,7 @@ app.use(favicon(path.join(__dirname, 'public/img', 'favicon.ico')));
 // require Routes with app.use
 // app.use(require('./controllers'));
 app.use(require('./controllers/trekmate_controller'));
-app.use(require('./controllers/api_flight'));
+// app.use(require('./controllers/api_flight'));
 app.use(require('./routes/api_activity.js'));
 app.use(require('./routes/api_destination.js'));
 app.use(require('./routes/api_trips.js'));

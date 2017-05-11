@@ -5,7 +5,7 @@ var db = require("../models");
 module.exports = function(app) {
   app.get("/dashboard", isAuthenticated, function(req, res) {
     if (!req.user) {
-      res.redirect("/dashboard");
+      res.redirect("/");
     }
     else {
       db.User.findOne({
@@ -14,7 +14,7 @@ module.exports = function(app) {
         },
         attributes: {
           exclude: password
-        }
+        },
         include: [db.Trip]
       })
       .then(function(userInfo) {
