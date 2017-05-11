@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 var http = require('http');
 var https = require('https');
-var db = require("../models");
+var db = require("../models/index");
 var config = require('../config/config.json');
 var dateFormat = require('dateformat');
 

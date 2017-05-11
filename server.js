@@ -62,21 +62,20 @@ app.use(favicon(path.join(__dirname, 'public/img', 'favicon.ico')));
 
 // require Routes with app.use
 // app.use(require('./controllers'));
-app.use(require('./controllers/trekmate_controller'));
+app.use(require('./routes/trekmate_controller'));
 app.use(require('./routes/api_activity.js'));
 app.use(require('./routes/api_destination.js'));
 app.use(require('./routes/api_trips.js'));
 app.use(require('./routes/dashboard.js'));
 app.use(require('./routes/login.js'));
 app.use(require('./routes/trip.js'));
-app.use(require('./controllers/api_user'));
-app.use(require('./controllers/api_flight'));
+app.use(require('./routes/api_flight'));
 
 // Syncing our sequelize models and then starting our express app
 // force: true to allow structure modifications in our database,
 // this is the case with associations
 
-db.sequelize.sync({ force: false }).then(function () {
+db.sequelize.sync({ force: true }).then(function () {
     var server = app.listen(app.get('port'), function () {
         console.log('Listening on port ' + app.get('port'));
     });

@@ -1,8 +1,7 @@
 body {
-    /*background-image: url("http://www.powerpointhintergrund.com/uploads/blue-ppt-backgrounds-21.jpg");*/
-    /*background-repeat: no-repeat;*/
-    /*background-size: cover;*/
-    background-color: #66CCFC;
+    background-image: url("http://www.powerpointhintergrund.com/uploads/blue-ppt-backgrounds-21.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 h1 {
@@ -159,32 +158,5 @@ i.wi {
     position: absolute;
     top: 230px;
     left: 70px;
-}
-
-@media screen and (max-width: 980px) {
-    body {
-        /*background-color: lightgray;*/
-    }
-    .wrapper{
-        width: 600px;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    body {
-        /*background-color: lightgray;*/
-    }
-    .wrapper{
-        width: 600px;
-    }
-}
-
-@media screen and (max-width: 640px) {
-    body {
-        /*background-color: lightgray;*/
-    }
-    .wrapper{
-        width: 600px;
-    }
 }
 
