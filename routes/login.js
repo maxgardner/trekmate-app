@@ -7,9 +7,9 @@ var db = require("../models");
 module.exports = function(app) {
   app.get("/", function(req, res) {
     if (req.user) {
-      res.redirect("/frontpage");
+      res.redirect("/dashboard");
     }
-    res.render("index");
+    res.render("dashboard");
   });
 
   app.post("/login", passport.authenticate('local'), function(req, res) {
@@ -30,4 +30,4 @@ module.exports = function(app) {
     req.logout();
     res.redirect("/");
   });
-}
+};
