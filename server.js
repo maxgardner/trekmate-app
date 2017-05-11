@@ -63,13 +63,12 @@ app.use(favicon(path.join(__dirname, 'public/img', 'favicon.ico')));
 // require Routes with app.use
 // app.use(require('./controllers'));
 app.use(require('./controllers/trekmate_controller'));
-app.use(require('./routes/api_activity.js'));
-app.use(require('./routes/api_destination.js'));
-app.use(require('./routes/api_trips.js'));
-app.use(require('./routes/dashboard.js'));
-app.use(require('./routes/login.js'));
-app.use(require('./routes/trip.js'));
-app.use(require('./controllers/api_user'));
+require('./routes/api_activity.js')(app);
+require('./routes/api_destination.js')(app);
+require('./routes/api_trips.js')(app);
+require('./routes/dashboard.js')(app);
+require('./routes/login.js')(app);
+require('./routes/trip.js')(app);
 app.use(require('./controllers/api_flight'));
 
 // Syncing our sequelize models and then starting our express app
