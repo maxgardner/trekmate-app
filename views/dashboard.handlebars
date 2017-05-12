@@ -1,73 +1,6 @@
-<<<<<<< HEAD
-<!--TRIP DASH BOARD-->
-    <!-- Add Trip Modal -->
-    <div id="addTripModal" class="modal">
-        <div class="modal-content">
-            <h4>Add A Trip</h4>
-            <input placeholder="City (Ex: Austin)" id="trip-city" type="text" class="validate">
-            <input placeholder="State (Ex: TX)" id="trip-state" type="text" class="validate" maxlength="2">
-            <input placeholder="Day Leaving (Ex: March 11)" id="trip-leaving" type="date" class="datepicker">
-            <input placeholder="Day Returning (Ex: March 15)" id="trip-returning" type="date" class="datepicker">
-        </div>
-        <div class="modal-footer">
-            <a id="set-location" href="#!" class="modal-action waves-effect waves-green btn">Go</a>
-        </div>
-    </div>
-    <!-- End of Add Trip Modal -->
-
-    <!-- Remove Trip Modal -->
-    <div id="removeTripModal" class="modal">
-      <div class="modal-content">
-        <h4>Delete A Trip</h4>
-        <div id="deleteTrips">You don't have any trips to delete.</div>
-      </div>
-    </div> 
-    <!-- End of Remove Trip Modal --> 
-
-    <!-- Destination page -->
-    <div id="user-trips" class="container content hide">
-        <div class="row valign-wrapper">
-            <div class="col s4 offset-s4 valign">
-                <div class="card darken-1">
-                    <div class="card-content">
-                        <span id="trips-title" class="card-title">Pick A Trip</span>
-                        <p id="trip-list"></p>
-                    </div>
-                    <div class="card-action">
-                        <a class="waves-effect waves-light btn valign" href="#addTripModal" id="add-trip-link">Add A Trip</a>
-                        <br>
-                        <a class="waves-effect waves-light btn valign" href="#removeTripModal" id="deleteATrip">Delete A Trip</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End of Destination page -->    
-<!-- END OF TRIP DASH BOARD -->
-
-<!-- DASH BOARD -->
-    <div id="dashboard" class="container content hide">
-        <!-- Destination and Weather-->
-        <div class="row">
-            <div class="col s4">
-                <span id="city-name"></span>
-                <span id="trip-timeframe"></span>
-            </div>
-            <div class="col s4"></div>
-            <div class="col s4">
-                <div class="card" id="wCard">
-                    <div class="card-image"></div>
-                    <div class="card-content">
-                      <div id="weather"></div>
-                    </div>
-                    <div class="card-action">
-                        <p class="weather-forecast"><a id="forecast-link" href="#" target="_blank">5-Day Forecast</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- end of Destination and Weather-->
-        
+    
+    
+     <div class="container"> 
         <!--Begining of Cards-->
         <div id="trip-details" class="row"></div>
         <div class="row"></div>
@@ -142,6 +75,13 @@
                       </div>
                   </div>
               </div>
+                {{#each hotel}}
+                <div class="itemTemplateWrapper">
+                    <div>{{hotel_name}}</div>
+                    <div>{{hotel_address}}</div>
+                    </div>{{check_In_time}}</div>
+                </div>
+                {{/each}}
               <div class="card-reveal">
                   <span class="card-title grey-text text-darken-4 reveal-head">Hotel<i class="material-icons right">close</i></span>
                   <span id="userHotel"></span>
@@ -167,14 +107,21 @@
                     <div id="addRentalModal" class="modal">
                         <div class="modal-content">
                             <h4>Add A Rental Car</h4>
-                            <input placeholder="Rental_Comp" id="carRentalName" type="text" class="validate">
-                            <input placeholder="Confirmation_Num" id="onfirmationNum" type="text" class="validate">
+                            <input placeholder="Rental Company" id="Rental_Comp" type="text" class="validate">
+                            <input placeholder="Confirmation Number" id="confirmationNum" type="text" class="validate">
                         </div>
                         <div class="modal-footer">
                           <a id="addRental" href="#!" class="modal-action waves-effect waves-green btn">Submit</a>
                         </div>
                     </div>
                 </div>
+                </div>
+                {{#each CarRental}}
+                <div class="itemTemplateWrapper">
+                    <div>{{RentalName}}</div>
+                    <div>{{confirmationNum}}</div>
+                </div>
+                {{/each}}
                 <div class="card-reveal">
                     <span class="card-title grey-text text-darken-4 reveal-head">Transportation<i class="material-icons right">close</i></span>
                     <span id="userCar"></span>
@@ -210,6 +157,14 @@
                       </div>
                     </div>
                 </div>
+                </div>
+                {{#each Activity}}
+                <div class="itemTemplateWrapper">
+                    <div>{{activity_name}}</div>
+                    <div>{{discription}}</div>
+                    </div>{{time_of_event}}</div>
+                </div>
+                {{/each}}
                 <div class="card-reveal">
                     <span class="card-title grey-text text-darken-4 reveal-head">Itinerary<i class="material-icons right">close</i></span>
                     <ul id="event"></ul>
@@ -217,10 +172,12 @@
             </div>
           </div>
         </div>
+       </div>
 <!--end of Activity Card -->
-    </div><!--container end div-->
+</div><!--container end div-->
 <!-- End of DASH BOARD -->
-=======
+
+
 <!-- Compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
 <!--Materialize icons-->
@@ -238,4 +195,3 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.js"></script>
 
 
->>>>>>> master

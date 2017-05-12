@@ -1,23 +1,23 @@
 
     
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-    // $('.modal').modal();
+    $('.modal').modal();
 
 
 
-// 		if (1==2) {console.log(""); }
-// 	else {
-//  		$("#dashboard").removeClass("hide");
-//  		$("#user-trips").removeClass("hide");
-//  		$("#btnLogout").addClass("hide");
-//  		$("#sign-in-link").addClass("hide");
-//  		$("#sign-up-link").addClass("hide");
-//  		$("#sign-in-title").text("Sign In");
-//  		$("#btnLogin").addClass("hide");
-//  		$("#btnSignUp").addClass("hide");
-//  		$("#back2Trips").addClass("hide");
-//  		console.log("Not logged in");
-//  	}
+		if (1==2) {console.log(""); }
+	else {
+ 		$("#dashboard").removeClass("hide");
+ 		$("#user-trips").removeClass("hide");
+ 		$("#btnLogout").addClass("hide");
+ 		$("#sign-in-link").addClass("hide");
+ 		$("#sign-up-link").addClass("hide");
+ 		$("#sign-in-title").text("Sign In");
+ 		$("#btnLogin").addClass("hide");
+ 		$("#btnSignUp").addClass("hide");
+ 		$("#back2Trips").addClass("hide");
+ 		console.log("Not logged in");
+ 	}
 
 
 // // Open sign-in modal upon user clicking "Sign In" button
@@ -31,7 +31,7 @@
 // 	$("#txtPassword").attr("value", "");
 // });
 
-// // Change sign-in modal if user clicks "Sign Up" button
+// Change sign-in modal if user clicks "Sign Up" button
 // $("#sign-up-link").on("click", function(event) {
 // 	event.preventDefault();
 // 	$('#signInModal').modal();
@@ -54,15 +54,15 @@
 // });
 
 // // User sign up
-// $("#btnSignUp").on("click", function(event){
-// 	event.preventDefault();
-// 	const email = $("#txtEmail").val();
-// 	const pass = $("#txtPassword").val();
-// 	//sign in
-// 	//check for real email
-// 	const promise = auth.createUserWithEmailAndPassword(email, pass).then(addUser());
-// 	promise.catch( e=> console.log(e.message));
-// });
+$("#btnSignUp").on("click", function(event){
+	event.preventDefault();
+	const email = $("#txtEmail").val();
+	const pass = $("#txtPassword").val();
+	//sign in
+	//check for real email
+	const promise = auth.createUserWithEmailAndPassword(email, pass).then(addUser());
+	promise.catch( e=> console.log(e.message));
+});
 
 // // User sign out
 // $("#btnLogout").on("click", function(event){

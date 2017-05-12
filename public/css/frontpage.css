@@ -1,5 +1,5 @@
 #logo {
-    max-width: 200px;
+    max-width: 250px;
 }
 
 .promo video {
@@ -8,4 +8,13 @@
 
 .modal-content {
     background: grey;
+}
+
+#landing {
+  padding: 0;
+  margin: 0;
+  width: 2200;
+  margin: 0 auto;
+  height: 100%;
+  z-index: -1;
 }
