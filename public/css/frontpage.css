@@ -9,3 +9,8 @@
 .modal-content {
     background: grey;
 }
+
+.david { 
+    align: right;
+    float: right; 
+}
