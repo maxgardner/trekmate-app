@@ -1,3 +1,6 @@
+<div class="container">
+<h1>Dashboard</h1>
+
 <!--TRIP DASH BOARD-->
     <!-- Add Trip Modal -->
     <form action="/api/trip" method="POST">
@@ -151,6 +154,13 @@
                       </div>
                   </div>
               </div>
+                {{#each hotel}}
+                <div class="itemTemplateWrapper">
+                    <div>{{hotel_name}}</div>
+                    <div>{{hotel_address}}</div>
+                    </div>{{check_In_time}}</div>
+                </div>
+                {{/each}}
               <div class="card-reveal">
                   <span class="card-title grey-text text-darken-4 reveal-head">Hotel<i class="material-icons right">close</i></span>
                   <span id="userHotel"></span>
@@ -176,14 +186,21 @@
                     <div id="addRentalModal" class="modal">
                         <div class="modal-content">
                             <h4>Add A Rental Car</h4>
-                            <input placeholder="Rental_Comp" id="carRentalName" type="text" class="validate">
-                            <input placeholder="Confirmation_Num" id="onfirmationNum" type="text" class="validate">
+                            <input placeholder="Rental Company" id="Rental_Comp" type="text" class="validate">
+                            <input placeholder="Confirmation Number" id="confirmationNum" type="text" class="validate">
                         </div>
                         <div class="modal-footer">
                           <a id="addRental" href="#!" class="modal-action waves-effect waves-green btn">Submit</a>
                         </div>
                     </div>
                 </div>
+                </div>
+                {{#each CarRental}}
+                <div class="itemTemplateWrapper">
+                    <div>{{RentalName}}</div>
+                    <div>{{confirmationNum}}</div>
+                </div>
+                {{/each}}
                 <div class="card-reveal">
                     <span class="card-title grey-text text-darken-4 reveal-head">Transportation<i class="material-icons right">close</i></span>
                     <span id="userCar"></span>
@@ -219,6 +236,14 @@
                       </div>
                     </div>
                 </div>
+                </div>
+                {{#each Activity}}
+                <div class="itemTemplateWrapper">
+                    <div>{{activity_name}}</div>
+                    <div>{{discription}}</div>
+                    </div>{{time_of_event}}</div>
+                </div>
+                {{/each}}
                 <div class="card-reveal">
                     <span class="card-title grey-text text-darken-4 reveal-head">Itinerary<i class="material-icons right">close</i></span>
                     <ul id="event"></ul>
@@ -226,9 +251,11 @@
             </div>
           </div>
         </div>
+       </div>
 <!--end of Activity Card -->
-    </div><!--container end div-->
+</div><!--container end div-->
 <!-- End of DASH BOARD -->
+
 <!-- Compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
 <!--Materialize icons-->

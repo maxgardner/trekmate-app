@@ -32,4 +32,4 @@ module.exports = function(router, db) {
     });
   });
   return router;
-}
+};

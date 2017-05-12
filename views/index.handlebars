@@ -1,12 +1,13 @@
+{{!--<div class="container" id="landing">--}}
 <div class="site-wrapper">
     <div class="promo">
-        <video autoplay="autoplay">
-            <source src="/img/frontPage_6.mp4" type="video/mp4">
+        <video autoplay="autoplay" controls loop>
+            <source src="../img/frontPage_6.mp4" type="video/mp4">
         </video>
-
+<div class="container">
         <div class="site-wrapper-inner">
 
-            <div class="cover-container">
+            <div class="class-container">
 
                 <div class="masthead clearfix">
                     <div class="inner">
@@ -38,18 +39,61 @@
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                             data-target="#aboutModal">About
                                     </button>
+                            </div>
                                 </li>
                               {{/if}}
                             </ul>
                         </nav>
-                    </div>
-                </div>
+              </div>
+      </div>
 
                 <div class="mastfoot">
                     <div class="inner">
                         <p>Copyright &copy; 2017 Trekmate </p>
                     </div>
                 </div>
+              </div>
+</div>
+
+
+<!-- LANDING PAGE -->
+    <!-- Sign In/Sign Up Modal -->
+<div class="container">
+    <div id="signInModal" class="modal">
+        <div class="modal-content">
+            <h4 id="sign-in-title">Sign In</h4>
+            <input id="txtEmail" type="email" class="validate">
+            <label for="email">Email</label>
+            <input id="txtPassword" type="password" class="validate">
+            <label for="password">Password</label>
+        </div>
+        <div class="modal-footer">
+            <a id="btnLogin" href="#!" class="modal-action waves-effect waves-green btn-flat hide">Sign In</a>
+            <a id="btnSignUp" href="#!" class="modal-action waves-effect waves-green btn-flat hide">Sign Up</a>
+        </div>
+    </div>
+    <!-- End of Sign In/Sign Up Modal -->
+
+    <!-- Navigation menu -->
+    <div class="container">
+        <div id="login">
+            <div class="row">
+                <div class="col s4">
+                    <img id="logo" class="reponsive-img" src="public/images/logo.png" alt="TrekMate" }>
+                </div>
+                <div class="col s4"></div>
+                <div class="col s4">
+                    <div class="nav-links">
+                        <ul class="right hide-on-sm-and-down">
+                            <li><a class="waves-effect waves-light btn modal-trigger" href="#signInModal" id="sign-in-link">Sign In</a></li>
+                            <br>
+                            <li><a class="waves-effect waves-light btn" href="#signInModal" id="sign-up-link">Sign Up</a></li>
+                            <li><a class="waves-effect waves-light btn hide" id="btnLogout">Sign Off</a></li><br>
+                            <li><a class="waves-effect waves-light btn hide" id="back2Trips">Trips List</a></li>
+                        </ul>
+            </div>
+        </div>
+
         <!--Sign in Modal-->
         <div id="signInModal" class="modal">
             <div class="modal-dialog">
@@ -122,5 +166,5 @@
             </div>
         </div>
     </div>
-    <!-- End Navigation menu -->
+</div>
 <!-- END OF LANDING PAGE-->

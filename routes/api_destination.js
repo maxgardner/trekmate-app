@@ -29,6 +29,5 @@ module.exports = function(router, db) {
       res.redirect("/dashboard");
     });
   });
-
   return router;
-}
+};
