@@ -1,8 +1,4 @@
-var express = require("express");
-var router = express.Router();
-var db = require("../models");
-
-module.exports = function(app) {
+module.exports = function(router, db) {
   router.post("/api/destination", function(req, res) {
     db.Destination.create(req.body)
     .then(function(activity) {
@@ -33,4 +29,6 @@ module.exports = function(app) {
       res.redirect("/dashboard");
     });
   });
+
+  return router;
 }

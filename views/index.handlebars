@@ -14,6 +14,16 @@
                         <!--<h3 class="masthead-brand">Trekmate</h3>-->
                         <nav>
                             <ul class="nav masthead-nav">
+                              {{#if user }}
+                              <li class="active">
+                                  <button type="button" class="btn btn-primary" onclick="location.href = '/dashboard';" >Your Trips
+                                  </button>
+                              </li>
+                              <li class="active">
+                                  <button type="button" class="btn btn-primary" onclick="location.href = '/logout';" >Log Out
+                                  </button>
+                              </li>
+                              {{else}}
                                 <li class="active">
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                             data-target="#signInModal">Sign in
@@ -29,6 +39,7 @@
                                             data-target="#aboutModal">About
                                     </button>
                                 </li>
+                              {{/if}}
                             </ul>
                         </nav>
                     </div>
@@ -39,68 +50,28 @@
                         <p>Copyright &copy; 2017 Trekmate </p>
                     </div>
                 </div>
-
-<<<<<<< HEAD
-<!-- LANDING PAGE -->
-    <!-- Sign In/Sign Up Modal -->
-    <div id="signInModal" class="modal">
-        <div class="modal-content">
-            <h4 id="sign-in-title">Sign In</h4>
-            <input id="txtEmail" type="email" class="validate">
-            <label for="email">Email</label>
-            <input id="txtPassword" type="password" class="validate">
-            <label for="password">Password</label>
-        </div>
-        <div class="modal-footer">
-            <a id="btnLogin" href="#!" class="modal-action waves-effect waves-green btn-flat hide">Sign In</a>
-            <a id="btnSignUp" href="#!" class="modal-action waves-effect waves-green btn-flat hide">Sign Up</a>
-        </div>
-    </div>
-    <!-- End of Sign In/Sign Up Modal -->
-
-    <!-- Navigation menu -->
-    <div class="container">
-        <div id="login">
-            <div class="row">
-                <div class="col s4">
-                    <img id="logo" class="reponsive-img" src="public/images/logo.png" alt="TrekMate" }>
-                </div>
-                <div class="col s4"></div>
-                <div class="col s4">
-                    <div class="nav-links">
-                        <ul class="right hide-on-sm-and-down">
-                            <li><a class="waves-effect waves-light btn modal-trigger" href="#signInModal" id="sign-in-link">Sign In</a></li>
-                            <br>
-                            <li><a class="waves-effect waves-light btn" href="#signInModal" id="sign-up-link">Sign Up</a></li>
-                            <li><a class="waves-effect waves-light btn hide" id="btnLogout">Sign Off</a></li><br>
-                            <li><a class="waves-effect waves-light btn hide" id="back2Trips">Trips List</a></li>
-                        </ul>
-=======
-            </div>
-
-        </div>
         <!--Sign in Modal-->
         <div id="signInModal" class="modal">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Sign In</h4>
+                        <h4 class="modal-title">Log In</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="/dashboard" method="post">
+                        <form action="/login" method="POST">
                             <label for="inputUser">
                                 <span>Enter User id</span>
                             </label>
-                            <input id="inputUser" type="text" name="user_name" value="user">
+                            <input id="email" type="text" name="email" style="color: #000;">
                             <label for="passwordUser">
                                 <span class="actAsPara">Enter password</span>
                             </label>
-                            <input id="passwordUser" type="password" name="user_password" value="password">
+                            <input id="password" type="password" name="password" style="color: #000;">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-primary">Log In</button>
                     </div>
                     </form>
                 </div>
@@ -114,22 +85,18 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Sign In</h4>
+                        <h4 class="modal-title">Sign Up</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="/dashboard" method="get">
-                            <label for="inputUser">
-                                <span>Enter User id</span>
-                            </label>
-                            <input id="inputUser" type="text" name="user_name" value="user">
-                            <label for="passwordUser">
-                                <span class="actAsPara">Enter password</span>
-                            </label>
-                            <input id="passwordUser" type="password" name="user_password" value="password">
+                        <form action="/signup" method="POST">
+                            <input id="first_name" type="text" name="first_name" placeholder="First Name" style="color: #000;"><br>
+                            <input id="last_name" type="text" name="last_name" placeholder="Last Name" style="color: #000;"><br>
+                            <input id="email" type="text" name="email" placeholder="Email" style="color: #000;"><br>
+                            <input id="password" type="password" name="password" placeholder="Password" style="color: #000;">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
                     </div>
                     </form>
                 </div>
@@ -150,19 +117,10 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary">Save</button>
->>>>>>> master
                     </div>
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
     </div>
     <!-- End Navigation menu -->
 <!-- END OF LANDING PAGE-->
-
-
-
-=======
-
-    </div>
->>>>>>> master

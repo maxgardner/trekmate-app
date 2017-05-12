@@ -1,18 +1,20 @@
-<<<<<<< HEAD
 <!--TRIP DASH BOARD-->
     <!-- Add Trip Modal -->
+    <form action="/api/trip" method="POST">
     <div id="addTripModal" class="modal">
         <div class="modal-content">
             <h4>Add A Trip</h4>
-            <input placeholder="City (Ex: Austin)" id="trip-city" type="text" class="validate">
-            <input placeholder="State (Ex: TX)" id="trip-state" type="text" class="validate" maxlength="2">
-            <input placeholder="Day Leaving (Ex: March 11)" id="trip-leaving" type="date" class="datepicker">
-            <input placeholder="Day Returning (Ex: March 15)" id="trip-returning" type="date" class="datepicker">
+            <input placeholder="City (Ex: Austin)" id="trip-city" name="city" type="text" class="validate">
+            <input placeholder="State (Ex: TX)" id="trip-state" name="state" type="text" class="validate" maxlength="2">
+            <input placeholder="Day Leaving (Ex: March 11)" id="trip-leaving" name="departure_date" type="date" class="datepicker">
+            <input placeholder="Day Returning (Ex: March 15)" id="trip-returning" name="return_date" type="date" class="datepicker">
+            <input value="{{user.id}}" name="userId" type="hidden">
         </div>
         <div class="modal-footer">
-            <a id="set-location" href="#!" class="modal-action waves-effect waves-green btn">Go</a>
+          <button type="submit" class="btn btn-primary">Add Trip</button>
         </div>
     </div>
+    </form>
     <!-- End of Add Trip Modal -->
 
     <!-- Remove Trip Modal -->
@@ -21,17 +23,24 @@
         <h4>Delete A Trip</h4>
         <div id="deleteTrips">You don't have any trips to delete.</div>
       </div>
-    </div> 
-    <!-- End of Remove Trip Modal --> 
+    </div>
+    <!-- End of Remove Trip Modal -->
 
     <!-- Destination page -->
-    <div id="user-trips" class="container content hide">
+    <div id="user-trips" class="container content">
         <div class="row valign-wrapper">
             <div class="col s4 offset-s4 valign">
                 <div class="card darken-1">
                     <div class="card-content">
                         <span id="trips-title" class="card-title">Pick A Trip</span>
-                        <p id="trip-list"></p>
+                        <p id="trip-list">
+                          TRIP LIST<br>
+                          {{#if user.TripUuid }}
+                          {{#each trips }}
+                          <a href="/trip/{{this.uuid}}">Triiiip</a>
+                          {{/each}}
+                          {{/if}}
+                        </p>
                     </div>
                     <div class="card-action">
                         <a class="waves-effect waves-light btn valign" href="#addTripModal" id="add-trip-link">Add A Trip</a>
@@ -42,7 +51,7 @@
             </div>
         </div>
     </div>
-    <!-- End of Destination page -->    
+    <!-- End of Destination page -->
 <!-- END OF TRIP DASH BOARD -->
 
 <!-- DASH BOARD -->
@@ -67,7 +76,7 @@
             </div>
         </div>
         <!-- end of Destination and Weather-->
-        
+
         <!--Begining of Cards-->
         <div id="trip-details" class="row"></div>
         <div class="row"></div>
@@ -108,7 +117,7 @@
               <!-- End flight modal -->
               <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
                         <!-- <p>Flight</p> -->
-            </div><!--end of content--> 
+            </div><!--end of content-->
                     <!-- id for flight status -->
             <div class="card-reveal">
               <span class="card-title grey-text text-darken-4 reveal-head">Flight<i class="material-icons right">close</i></span>
@@ -204,7 +213,7 @@
                           <input placeholder="Activity Name" id="activity_name" type="text" class="validate">
                           <input placeholder="Discription" id="disription" type="text" class="validate">
                           <input placeholder="Time of Event" id="time_of_event" type="text" class="validate">
-                      </div> 
+                      </div>
                       <div class="modal-footer">
                           <button class="modal-action waves-effect waves-green btn" id="addActivity">Submit</button>
                       </div>
@@ -220,7 +229,6 @@
 <!--end of Activity Card -->
     </div><!--container end div-->
 <!-- End of DASH BOARD -->
-=======
 <!-- Compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
 <!--Materialize icons-->
@@ -236,6 +244,3 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.js"></script>
-
-
->>>>>>> master

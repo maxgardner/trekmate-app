@@ -1,33 +1,38 @@
-var express = require("express");
-var router = express.Router();
-var passport = require("../config/passport");
-var db = require("../models");
+var isAuthenticated = require("../config/isAuthenticated");
 
-// Setting up Passport for user authentication
-module.exports = function(app) {
-  app.get("/", function(req, res) {
+module.exports = function(router, db, passport) {
+  router.get("/", function(req, res) {
     if (req.user) {
-      res.redirect("/frontpage");
+      var user = {
+        user: req.user.id
+      }
+      res.render("index", user);
+    } else {
+      res.render("index");
     }
-    res.render("index");
   });
 
-  app.post("/login", passport.authenticate('local'), function(req, res) {
-    res.redirect("/login");
-  });
+  router.post("/login", passport.authenticate('local', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/' // see text
+  }));
 
-  app.post("/signup", function(req, res) {
+  router.post("/signup", function(req, res) {
+    console.log(req.body);
     db.User.create(req.body)
     .then(function() {
       res.redirect(307, "/login");
     })
     .catch(function(err) {
+      console.log(err);
       res.json(err);
     });
   });
 
-  app.get("/logout", function(req, res) {
+  router.get("/logout", function(req, res) {
     req.logout();
     res.redirect("/");
   });
+
+  return router;
 }

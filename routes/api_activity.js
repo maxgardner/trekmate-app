@@ -1,15 +1,11 @@
-var express = require("express");
-var router = express.Router();
-var db = require("../models");
-
-module.exports = function(app) {
+module.exports = function(router, db) {
   router.post("/api/activity", function(req, res) {
     db.Activity.create(req.body)
     .then(function(activity) {
       var newEntry = {
         activity: activity
       }
-      res.redirect("/dashboard");
+      res.redirect("/trip/" + activity.tripId);
     });
   });
 
@@ -36,4 +32,6 @@ module.exports = function(app) {
       res.redirect("/dashboard");
     });
   });
+
+  return router;
 }

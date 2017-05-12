@@ -1,22 +1,24 @@
-var express = require("express");
-var router = express.Router();
-var db = require("../models");
-
-module.exports = function(app) {
+module.exports = function(router, db) {
   router.get("/trip/:id?", function (req, res) {
     var tripId;
     if (req.params.id) {
       tripId = req.params.id;
     } else {
-      tripId = req.body.id;
+      tripId = req.body.uuid;
     }
     db.Trip.findOne({
       where: {
-        id: tripId
+        uuid: tripId
       },
-      include: [db.User, db.Destination, db.Flight, db.Hotel, db.CarRental, db.Activity] // Include all the models here
+      include: [db.User],
+      include: [db.Destination],
+      include: [db.Flight],
+      include: [db.Hotel],
+      include: [db.Car_Rental],
+      include: [db.Activity]
     })
     .then(function(tripInfo) {
+      console.log("Trip Info returned: " + JSON.stringify(tripInfo));
       var info = {
         trip: tripInfo,
         user: tripInfo.User,
@@ -26,7 +28,8 @@ module.exports = function(app) {
         carRental: tripInfo.CarRental,
         activity: tripInfo.Activity
       }
-      res.render("trip", info);
+      res.render("tripinfo", info);
     });
   });
+  return router;
 }

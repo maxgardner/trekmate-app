@@ -22,11 +22,11 @@ module.exports = function(sequelize, DataTypes) {
          email: {
              type: DataTypes.STRING,
              allowNull: false,
+             unique: true,
              validate: {len: [1], isEmail: true}
          },
          password: {
-          type: DataTypes.STRING,
-          allowNull: false
+           type: DataTypes.STRING
          },
          phone_number: {
             type: DataTypes.INTEGER,
@@ -43,28 +43,66 @@ module.exports = function(sequelize, DataTypes) {
          }
     },
 
-      {
+    {
 
-        classMethods: {
-            associate: function(models) {
-                User.belongsTo(models.Trip, {constraints: false});
+      classMethods: {
+          associate: function(models) {
+              User.belongsTo(models.Trip, {constraints: false});
 
-            }
-        },
-
-        instanceMethods: {
-          validPassword: function(password) {
-            return bcrypt.compareSync(password, this.password);
           }
-        },
+      },
 
-        // Before a user is created, we will automatically hash their password
-        hooks: {
-          beforeCreate: function(user, options, cb) {
-            user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
-            cb(null, options);
-          }
+      instanceMethods: {
+        validPassword: function(password) {
+          return bcrypt.compareSync(password, this.password);
         }
-      });
-    return User;
+      },
+
+      // Before a user is created, we will automatically hash their password
+      hooks: {
+        beforeCreate: function(user, options, cb) {
+          user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
+          cb(null, options);
+        }
+      }
+    });
+  return User;
 };
+
+      //
+      // {
+      //
+      //   classMethods: {
+      //       associate: function(models) {
+      //           User.belongsTo(models.Trip, {constraints: false});
+      //
+      //       }
+      //   },
+      //
+      //   instanceMethods: {
+      //     validPassword: function(password) {
+      //       return bcrypt.compareSync(password, this.password);
+      //     }
+      //     // validPassword: function(password, cb) {
+      //     //   bcrypt.compare(password, this.password, function(err, res, cb) {
+      //     //     if (err) {
+      //     //       console.log(err);
+      //     //       cb(err);
+      //     //     }
+      //     //     cb(res);
+      //     //   });
+      //     // }
+      //   },
+      //
+      //   // Hash user password and store that in the database in place of the password field
+      //   hooks: {
+      //     beforeCreate: function(user) {
+      //       user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
+      //       // hashPassword = bcrypt.hash(user.password, null, null
+      //       // return  function(err, hash) {
+      //       //   console.log(hash);
+      //       //   user.password = hash;
+      //       // });
+      //     }
+      //   }
+      // });

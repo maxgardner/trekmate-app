@@ -1,6 +1,7 @@
 
 // Dependencies
 var express = require('express');
+var router = express.Router();
 var path = require('path');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
@@ -19,13 +20,11 @@ app.use(express.static(process.cwd() + '/public'));
 // Serve static files in the public directory
 //app.use(express.static(path.join(__dirname, 'public')));
 
-
 // Set up the Express app to handle data parsing
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
-
 
 // override with POST having ?_method=DELETE
 app.use(methodOverride("_method"));
@@ -60,17 +59,15 @@ app.use(passport.session());
 // favicon in /public
 app.use(favicon(path.join(__dirname, 'public/img', 'favicon.ico')));
 
-// require Routes with app.use
-// app.use(require('./controllers'));
-
-require('./routes/api_activity.js')(app);
-require('./routes/api_destination.js')(app);
-require('./routes/api_trips.js')(app);
-require('./routes/dashboard.js')(app);
-require('./routes/login.js')(app);
-require('./routes/trip.js')(app);
+// Routes
+app.use(require('./routes/api_activity.js')(router, db));
+app.use(require('./routes/api_destination.js')(router, db));
+app.use(require('./routes/api_trips.js')(router, db));
+app.use(require('./routes/dashboard.js')(router, db));
+app.use(require('./routes/login.js')(router, db, passport));
+app.use(require('./routes/trip.js')(router, db));
 // roman
-app.use(require('./routes/trekmate_controller'));
+// app.use(require('./routes/trekmate_controller'));
 app.use(require('./routes/api_flight'));
 
 
