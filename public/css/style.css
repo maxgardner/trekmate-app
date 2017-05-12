@@ -1,7 +1,8 @@
 body {
-    background-image: url("http://www.powerpointhintergrund.com/uploads/blue-ppt-backgrounds-21.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    /*background-image: url("http://www.powerpointhintergrund.com/uploads/blue-ppt-backgrounds-21.jpg");*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: cover;*/
+    background-color: #807470;
 }
 
 h1 {
@@ -14,9 +15,10 @@ h1 {
 }
 
 #logo {
-    max-width: 400px;
-    max-height: 700px;
+    max-width: 550px;
+    max-height: 700px;  
     padding-top: 20px;
+    font-weight: bolder;
 
 }
 
@@ -65,7 +67,7 @@ nav>ul>li {
 }
 
 #weather {
-    /*background-color: skyblue;*/
+    background-color: skyblue;
 }
 
 #wCard {
