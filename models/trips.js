@@ -17,11 +17,11 @@ module.exports = function(sequelize, DataTypes) {
          },
          departure_date: {
              type: DataTypes.DATE,
-             allowNull: false,
+             allowNull: false
          },
          return_date: {
              type: DataTypes.DATE,
-             allowNull: false,
+             allowNull: false
          }
     },
     {

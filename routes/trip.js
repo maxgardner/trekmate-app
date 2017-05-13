@@ -19,16 +19,17 @@ module.exports = function(router, db) {
     })
     .then(function(tripInfo) {
       console.log("Trip Info returned: " + JSON.stringify(tripInfo));
-      var info = {
-        trip: tripInfo,
-        user: tripInfo.User,
-        destination: tripInfo.Destination,
-        flight: tripInfo.Flight,
-        hotel: tripInfo.Hotel,
-        carRental: tripInfo.CarRental,
-        activity: tripInfo.Activity
-      }
-      res.render("tripinfo", info);
+      // var info = {
+      //   trip: tripInfo,
+      //   user: tripInfo.User,
+      //   destination: tripInfo.Destination,
+      //   flight: tripInfo.Flight,
+      //   hotel: tripInfo.Hotel,
+      //   carRental: tripInfo.CarRental,
+      //   activity: tripInfo.Activity
+      // };
+      // res.render("tripinfo", info);
+        res.json(tripInfo);
     });
   });
   return router;
