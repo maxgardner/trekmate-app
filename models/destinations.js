@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    var Destination = sequelize.define("Destination", { 
+    var Destination = sequelize.define("Destination", {
             id: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
@@ -14,13 +14,17 @@ module.exports = function(sequelize, DataTypes) {
                 type: DataTypes.STRING,
                 allowNull: false
             },
+            state: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },
             longitude: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
+                allowNull: true,
             },
             latitude: {
                 type: DataTypes.INTEGER,
-                allowNull: false
+                allowNull: true
             }
         },
         {
@@ -28,11 +32,18 @@ module.exports = function(sequelize, DataTypes) {
                  associate: function(models) {
                     Destination.belongsTo(models.Trip,
                     {
+                        constraints: false,
                         onDelete: "cascade",
                         foreignKey: {
-                            allowNull: false
-                            }
-                        });
+                            allowNull: true
+                        }
+                    });
+                    Destination.hasOne(models.Trip, {
+                        constraints: false,
+                        foreignKey: {
+                          allowNull: true
+                        }
+                    });
                     }
                  }
              });

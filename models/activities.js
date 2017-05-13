@@ -24,9 +24,16 @@ module.exports = function(sequelize, DataTypes) {
         associate: function(models) {
             Activity.belongsTo(models.Trip,
             {
+              constraints: false,
               onDelete: "cascade",
               foreignKey: {
-                  allowNull: false
+                  allowNull: true
+              }
+            });
+            Activity.hasOne(models.Trip, {
+              constraints: false,
+              foreignKey: {
+                allowNull: true
               }
             });
           }

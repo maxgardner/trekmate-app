@@ -10,16 +10,21 @@ module.exports = function(router, db) {
     })
     .then(function(newTrip) {
       console.log("TRIP AFTER INITIALLY ADDING IT " + JSON.stringify(newTrip));
-      db.User.update({
-        TripUuid: newTrip.uuid
-      }, {
+      db.User.findOne({
         where: {
           id: newTrip.UserId
         }
       })
-      .then(function(user) {
-        console.log("USER TRIP ID " + user);
-        res.redirect("/dashboard");
+      .then(function(user, newTrip) {
+        db.User.update({
+          TripUuid: newTrip.Uuid,
+          where: {
+            id: user.id
+          }
+        })
+        .then(function(user) {
+          res.redirect("/dashboard");
+        });
       });
     });
   });

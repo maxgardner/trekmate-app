@@ -31,5 +31,10 @@ module.exports = function(router, db) {
       res.render("tripinfo", info);
     });
   });
+
+  router.get("/trips", function(req, res) {
+    res.render("tripinfo");
+  });
+
   return router;
 };

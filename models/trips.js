@@ -27,25 +27,78 @@ module.exports = function(sequelize, DataTypes) {
     {
         classMethods: {
             associate: function(models) {
-                Trip.hasMany(models.Flight);
-            },
-            associate: function(models) {
-                Trip.hasMany(models.Hotel);
-            },
-            associate: function(models) {
-                Trip.hasMany(models.Destination);
-            },
-            associate: function(models) {
-                Trip.hasMany(models.Car_Rental);
-            },
-            associate: function(models) {
-                Trip.hasMany(models.Activity);
-            },
-            associate: function(models) {
-                Trip.belongsTo(models.User, {
+                Trip.hasMany(models.Activity, {
+                  constraints: false,
                   foreignKey: {
-                      allowNull: false
+                      allowNull: true
                   }
+                });
+                Trip.belongsTo(models.Activity, {
+                  constraints: false,
+                  foreignKey: {
+                    allowNull: false
+                  }
+                });
+                Trip.hasMany(models.Car_Rental, {
+                  constraints: false,
+                  foreignKey: {
+                      allowNull: true
+                  }
+                });
+                Trip.belongsTo(models.Car_Rental, {
+                  constraints: false,
+                  foreignKey: {
+                    allowNull: false
+                  }
+                });
+                Trip.hasMany(models.Destination, {
+                  constraints: false,
+                  foreignKey: {
+                      allowNull: true
+                  }
+                });
+                Trip.belongsTo(models.Destination, {
+                  constraints: false,
+                  foreignKey: {
+                    allowNull: false
+                  }
+                });
+                Trip.hasMany(models.Flight, {
+                  constraints: false,
+                  foreignKey: {
+                      allowNull: true
+                  }
+                });
+                Trip.belongsTo(models.Flight, {
+                  constraints: false,
+                  foreignKey: {
+                    allowNull: false
+                  }
+                });
+                Trip.hasMany(models.Hotel, {
+                  constraints: false,
+                  foreignKey: {
+                      allowNull: true
+                  }
+                });
+                Trip.belongsTo(models.Hotel, {
+                  constraints: false,
+                  foreignKey: {
+                    allowNull: false
+                  }
+                });
+                Trip.hasMany(models.User, {
+                  constraints: false,
+                  foreignKey: {
+                      allowNull: true
+                  }
+                })
+                Trip.belongsTo(models.User, {
+                    constraints: false,
+                    onDelete: "cascade",
+                    foreignKey: {
+                      allowNull: false
+                    }
                 });
             }
         }

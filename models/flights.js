@@ -17,10 +17,18 @@ module.exports = function (sequelize, Datatypes) {
             classMethods: {
                 associate: function (models) {
                     Flight.belongsTo(models.Trip, {
+                        constraints: false,
+                        onDelete: "cascade",
                         foreignKey: {
                             allowNull: true
                             // foreignKey created TripId
                         }
+                    });
+                    Flight.hasOne(models.Trip, {
+                      constraints: false,
+                      foreignKey: {
+                        allowNull: true
+                      }
                     });
                 }
             }
