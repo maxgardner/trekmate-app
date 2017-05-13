@@ -2,6 +2,10 @@
     max-width: 250px;
 }
 
+.vidbg {
+  z-index: -1;
+}
+
 .promo video {
     width: 100%;
 }

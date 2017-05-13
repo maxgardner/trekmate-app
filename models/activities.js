@@ -1,14 +1,8 @@
 module.exports = function(sequelize, DataTypes) {
     var Activity = sequelize.define("Activity", {
-         id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true
-         },
          activity_name: {
              type: DataTypes.STRING,
-             allowNull: false,
+             allowNull: false
          },
          description: {
              type: DataTypes.STRING,
@@ -16,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
          },
          time_of_event: {
              type: DataTypes.TIME,
-             allowNull: false,
+             allowNull: false
          }
     },
     {
@@ -24,9 +18,16 @@ module.exports = function(sequelize, DataTypes) {
         associate: function(models) {
             Activity.belongsTo(models.Trip,
             {
+              constraints: false,
               onDelete: "cascade",
               foreignKey: {
-                  allowNull: false
+                  allowNull: true
+              }
+            });
+            Activity.hasOne(models.Trip, {
+              constraints: false,
+              foreignKey: {
+                allowNull: true
               }
             });
           }

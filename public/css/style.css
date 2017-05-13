@@ -14,9 +14,13 @@ h1 {
     margin-top: 40px;
 }
 
+.container {
+  z-index: 100;
+}
+
 #logo {
     max-width: 550px;
-    max-height: 700px;  
+    max-height: 700px;
     padding-top: 20px;
     font-weight: bolder;
 
@@ -161,4 +165,8 @@ i.wi {
     top: 230px;
     left: 70px;
 }
-
+.inputStyle { 
+    color: black;
+    width: 10%;
+    font-size: 13px;
+}

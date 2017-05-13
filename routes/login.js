@@ -5,7 +5,7 @@ module.exports = function(router, db, passport) {
     if (req.user) {
       var user = {
         user: req.user.id
-      }
+      };
       res.render("index", user);
     } else {
       res.render("index");

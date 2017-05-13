@@ -1,0 +1,31 @@
+
+<!-- Add Hotel Modal -->
+<div id="addHotelModal" class="modal">
+    <div class="modal-content">
+        <h4>Add A Hotel</h4>
+        <input placeholder="Hotel Name" id="hotel_Name" type="text" class="validate">
+        <input placeholder="Address (Ex. 1900 University Ave Austin TX, 78705)" id="hotelAddress"
+               type="text" class="validate">
+        <input placeholder="Check In Time" id="check_In_time" type="text" class="validate">
+    </div>
+    <div class="modal-footer">
+        <a id="addHotel" href="#!" class="modal-action waves-effect waves-green btn">Submit</a>
+    </div>
+</div>
+</div>
+{{#each hotel}}
+    <div class="itemTemplateWrapper">
+        <div>{{hotel_name}}</div>
+        <div>{{hotel_address}}</div>
+    </div>{{check_In_time}}</div>
+    </div>
+{{/each}}
+<div class="card-reveal">
+<span class="card-title grey-text text-darken-4 reveal-head">Hotel<i
+        class="material-icons right">close</i></span>
+    <span id="userHotel"></span>
+</div>
+</div>
+</div>
+</div>
+<!-- End of Hotel Card -->

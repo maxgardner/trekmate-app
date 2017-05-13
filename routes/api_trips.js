@@ -9,18 +9,7 @@ module.exports = function(router, db) {
       UserId: req.body.userId
     })
     .then(function(newTrip) {
-      console.log("TRIP AFTER INITIALLY ADDING IT " + JSON.stringify(newTrip));
-      db.User.update({
-        TripUuid: newTrip.uuid
-      }, {
-        where: {
-          id: newTrip.UserId
-        }
-      })
-      .then(function(user) {
-        console.log("USER TRIP ID " + user);
-        res.redirect("/dashboard");
-      });
+      res.redirect("/dashboard");
     });
   });
 

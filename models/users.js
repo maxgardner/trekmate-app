@@ -47,7 +47,18 @@ module.exports = function(sequelize, DataTypes) {
 
       classMethods: {
           associate: function(models) {
-              User.belongsTo(models.Trip, {constraints: false});
+              User.belongsTo(models.Trip, {
+                constraints: false,
+                foreignKey: {
+                    allowNull: false
+                }
+              });
+              User.hasMany(models.Trip, {
+                constraints: false,
+                foreignKey: {
+                    allowNull: true
+                }
+              });
 
           }
       },
