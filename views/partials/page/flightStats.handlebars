@@ -1,11 +1,15 @@
+<style>
+    #flightbox {
+        color: #333333;
+    }
+</style>
+
 <div id="flightbox">
-    <a href="#" id="prev_btn">&laquo;</a>
-    <a href="#" id="next_btn">&raquo;</a>
     <div id="carousel">
         <ul>
-            <li>{{flightStatuses.[0].flightId}}</li>
-            <li>{{flightStatuses.[0].departureAirportFsCode}}</li>
-            <li>{{flightStatuses.[0].arrivalAirportFsCode}}</li>
+            <li>Status &nbsp;{{flightStatus.flightStatuses.[0].status}}</li>
+            <li>Departure Airport &nbsp;{{flightStatus.flightStatuses.[0].departureAirportFsCode}}</li>
+            <li>Arrival Airport &nbsp;{{flightStatus.flightStatuses.[0].arrivalAirportFsCode}}</li>
         </ul>
     </div>
 </div>

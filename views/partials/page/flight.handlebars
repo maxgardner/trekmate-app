@@ -1,6 +1,4 @@
 <div id="flightbox">
-    <a href="#" id="prev_btn">&laquo;</a>
-    <a href="#" id="next_btn">&raquo;</a>
     <div id="carousel">
         <h4>Flights</h4>
         <ul>
@@ -8,7 +6,7 @@
                 <li>
                     {{this.flight_number}}
 
-                    <form action="/flightStats" method="POST">
+                    <form action="/flightStats" method="post">
                         <input type="hidden" name="flightNumber" value="{{this.flight_number}}">
                         <input type="hidden" name="flightDate" value="{{this.flight_date}}">
                         <button class="button submit-btn" type="submit">Flight Informaion</button>
