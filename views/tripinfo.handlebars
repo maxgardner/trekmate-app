@@ -8,134 +8,136 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.js"></script>
 
 <div class="container">
-  <div class="row">
+    <div class="row">
 
-      <!-- FLIGHT DISPLAY -->
+        <!-- FLIGHT DISPLAY -->
 
-      <div class="col l4 m6 s12">
-          <div class="card small">
-              <div class="card-image waves-effect waves-block waves-light">
-                  <img class="activator" src="http://www.mattis.aero/images/ship.jpg">
-              </div>
-              <div class="card-content">
-                <!-- Add Flight Modal Trigger -->
-                <a class="waves-effect waves-light btn" href="#addFlightModal">Add Flight</a>
+        <div class="col l4 m6 s12">
+            <div class="card small">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="http://www.mattis.aero/images/ship.jpg">
+                </div>
+                <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4"><i
+                class="material-icons right">more_vert</i></span>
 
-                <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
-              </div>
+                    <p><a class="modal-trigger waves-effect waves-light btn" href="#addFlightModal">Flight</a>
 
-              <div class="card-reveal">
-                  <span class="card-title grey-text text-darken-4 reveal-head">Flight<i class="material-icons right">close</i></span>
-
-                  {{#if trip.flightId }}
-                  {{#each flight}}
-                    <p>{{this.flight_number}}</p>
-                    <p>{{this.flight_date}}</p>
-                    <p>{{this.departure}}</p>
-                  {{/each}}
-                  {{/if}}
-                  <p id="flightStatus"></p>
-              </div>
-          </div>
-      </div>
-
-      <!-- CAR RENTAL DISPLAY -->
-
-      <div class="col l4 m6 s12">
-          <div class="card small">
-
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="http://chainimage.com/images/car-wallpapers-free-download-maybach-history-1921-2013.jpg">
+                    </p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Flights<i
+                            class="material-icons right">close</i></span>
+                    {{> page/flight }}
+                    {{> page/flightStats }}
+                </div>
             </div>
+        </div>
 
-            <div class="card-content">
-            <a class="waves-effect waves-light btn" href="#addRentalModal">Add Rental</a>
-                <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
-            </div>
+        <!-- CAR RENTAL DISPLAY -->
 
-            <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4 reveal-head">Transportation<i class="material-icons right">close</i></span>
+        <div class="col l4 m6 s12">
+            <div class="card small">
 
-                {{#if trip.carRentalId }}
-                {{#each carRental }}
-                    <span>{{this.Rental_Comp}}</span>
-                {{/each}}
-                {{/if}}
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator"
+                         src="http://chainimage.com/images/car-wallpapers-free-download-maybach-history-1921-2013.jpg">
+                </div>
 
-                <span id="userCar"></span>
-            </div>
+                <div class="card-content">
+                    <a class="waves-effect waves-light btn" href="#addRentalModal">Add Rental</a>
+                    <span class="card-title activator grey-text text-darken-4"><i
+                            class="material-icons right">more_vert</i></span>
+                </div>
 
-          </div>
-      </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4 reveal-head">Transportation<i
+                            class="material-icons right">close</i></span>
 
-      <!-- HOTEL DISPLAY -->
-
-      <div class="col l4 m6 s12">
-          <div class="card small">
-              <div class="card-image waves-effect waves-block waves-light">
-                  <img class="activator" src="http://flashydubai.com/images/jumeirah-beach.jpg">
-              </div>
-              <div class="card-content">
-                  <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
-                  <a class="waves-effect waves-light btn" id="add-hotel" href="#addHotelModal">Add Hotel</a>
-              </div>
-              <div class="card-reveal">
-                  <span class="card-title grey-text text-darken-4 reveal-head">Hotel<i class="material-icons right">close</i></span>
-
-                  {{#if trip.hotelId }}
-                  {{#each hotel }}
-                      <span>{{this.hotel_name}}</span>
-                      <span>{{this.address}}</span>
-                      <span>{{this.checkin_time}}</span>
-                  {{/each}}
-                  {{/if}}
-
-                  <span id="userHotel"></span>
-              </div>
-          </div>
-      </div>
-
-      <!-- ACTIVITY DISPLAY -->
-
-      <div class="col l12 m6 s12">
-          <div class="card small">
-              <div class="card-image waves-effect waves-block waves-light">
-                  <img class="activator" src="http://images.all-free-download.com/images/graphicthumb/tourist_information_sign_192713.jpg">
-              </div>
-
-              <div class="card-content">
-                  <a class="waves-effect waves-light btn" href="#addActivityModal">Add Activity</a>
-                  <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span><br>
-                  <p><a id="googleTour" target="_blank" href="#" >Activity Look Up</a></p>
-
-              </div>
-
-              <div class="card-reveal">
-                  <span class="card-title grey-text text-darken-4 reveal-head">Itinerary<i class="material-icons right">close</i></span>
-                  <ul id="event">
-
-                    {{#if trip.activityId }}
-                    {{#each activity}}
-                      <li>
-                        {{this.activity_name}}
-                        <p>{{this.description}}</p>
-                      </li>
-                    {{/each}}
+                    {{#if trip.carRentalId }}
+                        {{#each carRental }}
+                            <span>{{this.Rental_Comp}}</span>
+                        {{/each}}
                     {{/if}}
 
-                  </ul>
-              </div>
+                    <span id="userCar"></span>
+                </div>
 
-          </div>
-      </div>
-      <!--modals-->
+            </div>
+        </div>
 
-      {{> page/addHotelModal }}
-      {{> page/addFlightModal }}
-      {{> page/addRentalModal }}
-      {{> page/addActivityModal }}
+        <!-- HOTEL DISPLAY -->
 
-  </div> <!-- END OF ROW -->
+        <div class="col l4 m6 s12">
+            <div class="card small">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="http://flashydubai.com/images/jumeirah-beach.jpg">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4"><i
+                            class="material-icons right">more_vert</i></span>
+                    <a class="waves-effect waves-light btn" id="add-hotel" href="#addHotelModal">Add Hotel</a>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4 reveal-head">Hotel<i class="material-icons right">close</i></span>
+
+                    {{#if trip.hotelId }}
+                        {{#each hotel }}
+                            <span>{{this.hotel_name}}</span>
+                            <span>{{this.address}}</span>
+                            <span>{{this.checkin_time}}</span>
+                        {{/each}}
+                    {{/if}}
+
+                    <span id="userHotel"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACTIVITY DISPLAY -->
+
+        <div class="col l12 m6 s12">
+            <div class="card small">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator"
+                         src="http://images.all-free-download.com/images/graphicthumb/tourist_information_sign_192713.jpg">
+                </div>
+
+                <div class="card-content">
+                    <a class="waves-effect waves-light btn" href="#addActivityModal">Add Activity</a>
+                    <span class="card-title activator grey-text text-darken-4"><i
+                            class="material-icons right">more_vert</i></span><br>
+                    <p><a id="googleTour" target="_blank" href="#">Activity Look Up</a></p>
+
+                </div>
+
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4 reveal-head">Itinerary<i
+                            class="material-icons right">close</i></span>
+                    <ul id="event">
+
+                        {{#if trip.activityId }}
+                            {{#each activity}}
+                                <li>
+                                    {{this.activity_name}}
+                                    <p>{{this.description}}</p>
+                                </li>
+                            {{/each}}
+                        {{/if}}
+
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <!--modals-->
+
+        {{> page/addHotelModal }}
+        {{> page/addFlightModal }}
+        {{> page/addRentalModal }}
+        {{> page/addActivityModal }}
+
+    </div> <!-- END OF ROW -->
 </div> <!-- END OF CONTAINER -->
 
 <script>
