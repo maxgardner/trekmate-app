@@ -58,7 +58,7 @@ module.exports = function(router, db) {
                   activity: activity
                 }
 
-                console.log(info);
+                console.log(carRental);
 
                 res.render("tripinfo", info);
               });

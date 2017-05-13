@@ -55,11 +55,14 @@
                     <span class="card-title grey-text text-darken-4 reveal-head">Transportation<i
                             class="material-icons right">close</i></span>
 
-                    {{#if trip.carRentalId }}
+                    <ul>
+                    {{#if carRental }}
                         {{#each carRental }}
-                            <span>{{this.Rental_Comp}}</span>
+                            <li>{{this.rental_comp}}</li>
+                            <li>{{this.confirmation_num}}</li>
                         {{/each}}
                     {{/if}}
+                  </ul>
 
                     <span id="userCar"></span>
                 </div>
@@ -81,14 +84,15 @@
                 </div>
                 <div class="card-reveal">
                     <span class="card-title grey-text text-darken-4 reveal-head">Hotel<i class="material-icons right">close</i></span>
-
-                    {{#if trip.hotelId }}
+                    <ul>
+                    {{#if hotel }}
                         {{#each hotel }}
-                            <span>{{this.hotel_name}}</span>
-                            <span>{{this.address}}</span>
-                            <span>{{this.checkin_time}}</span>
+                            <li>{{this.hotel_name}}</li>
+                            <li>{{this.address}}</li>
+                            <li>{{this.checkin_time}}</li>
                         {{/each}}
                     {{/if}}
+                  </ul>
 
                     <span id="userHotel"></span>
                 </div>
@@ -117,7 +121,7 @@
                             class="material-icons right">close</i></span>
                     <ul id="event">
 
-                        {{#if trip.activityId }}
+                        {{#if activity }}
                             {{#each activity}}
                                 <li>
                                     {{this.activity_name}}

@@ -1,12 +1,12 @@
 module.exports = function(router, db) {
-  router.post("/api/activity", function(req, res) {
+  router.post("/api/hotel", function(req, res) {
     db.Hotel.create(req.body)
     .then(function(hotel) {
       res.redirect("/trip/" + hotel.TripUuid);
     });
   });
 
-  router.put("/api/activity", function(req, res) {
+  router.put("/api/hotel", function(req, res) {
     db.Hotel.update(req.body,
       {
         where: {
@@ -18,7 +18,7 @@ module.exports = function(router, db) {
     });
   });
 
-  router.delete("/api/activity", function(req, res) {
+  router.delete("/api/hotel", function(req, res) {
     var tripId = req.body.TripUuid;
     db.Activity.destroy(
       {
