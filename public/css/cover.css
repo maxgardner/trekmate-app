@@ -9,9 +9,13 @@ a:hover {
     color: #fff;
 }
 
-.david { 
+.david {
     align: right;
-    float: right; 
+    float: right;
+}
+
+.vidnavbar {
+  width: 100%;
 }
 /* Custom default button */
 .btn-default,

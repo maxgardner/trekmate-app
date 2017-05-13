@@ -9,27 +9,63 @@ module.exports = function(router, db) {
     db.Trip.findOne({
       where: {
         uuid: tripId
-      },
-      include: [db.User],
-      include: [db.Destination],
-      include: [db.Flight],
-      include: [db.Hotel],
-      include: [db.Car_Rental],
-      include: [db.Activity]
+      }
     })
-    .then(function(tripInfo) {
-      console.log("Trip Info returned: " + JSON.stringify(tripInfo));
-      // var info = {
-      //   trip: tripInfo,
-      //   user: tripInfo.User,
-      //   destination: tripInfo.Destination,
-      //   flight: tripInfo.Flight,
-      //   hotel: tripInfo.Hotel,
-      //   carRental: tripInfo.CarRental,
-      //   activity: tripInfo.Activity
-      // };
-      // res.render("tripinfo", info);
-        res.json(tripInfo);
+    .then(function(dbTrip) {
+      var trip = dbTrip;
+      db.Activity.findAll({
+        where: {
+          TripUuid: tripId
+        }
+      })
+      .then(function(dbActivity) {
+        var activity = dbActivity;
+        db.Car_Rental.findAll({
+          where: {
+            TripUuid: tripId
+          }
+        })
+        .then(function(dbCar) {
+          var carRental = dbCar;
+          db.Flight.findAll({
+            where: {
+              TripUuid: tripId
+            }
+          })
+          .then(function(dbFlight) {
+            var flight = dbFlight;
+            db.Hotel.findAll({
+              where: {
+                TripUuid: tripId
+              }
+            })
+            .then(function(dbHotel) {
+              var hotel = dbHotel;
+              db.User.findOne({
+                where: {
+                  id: req.user.id
+                }
+              })
+              .then(function(dbUser) {
+                var user = dbUser;
+
+                var info = {
+                  trip: trip,
+                  user: user,
+                  flight: flight,
+                  hotel: hotel,
+                  carRental: carRental,
+                  activity: activity
+                }
+
+                console.log(info);
+
+                res.render("tripinfo", info);
+              });
+            });
+          });
+        });
+      });
     });
   });
 
