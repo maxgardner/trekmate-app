@@ -2,22 +2,23 @@ var isAuthenticated = require("../config/isAuthenticated");
 
 module.exports = function(router, db) {
   router.get("/dashboard", isAuthenticated, function(req, res) {
-    db.User.findOne({
+    db.Trip.findAll({
       where: {
-        id: req.user.id
+        Userid: req.user.id
       },
-      attributes: {
-        exclude: ['password']
-      },
-      include: [db.Trip]
+      // attributes: {
+      //   exclude: ['password']
+      // },
+      include: [db.User]
     })
-    .then(function(userInfo) {
-      console.log("MY QUERY: " + JSON.stringify(userInfo));
+    .then(function(tripInfo) {
+
       var info = {
-        user: userInfo,
-        trips: [userInfo.Trip]
-      }
+        trips: tripInfo
+        // user: [userInfo.User]
+      };
       res.render("dashboard", info);
+      //res.json(info);
     });
   });
 
