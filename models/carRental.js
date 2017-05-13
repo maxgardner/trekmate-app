@@ -1,9 +1,13 @@
 module.exports = function(sequelize, DataTypes) {
     var CarRental = sequelize.define("Car_Rental", {
-         Rental_Comp: {
+         rental_comp: {
              type: DataTypes.STRING,
                     allowNull: false,
                     validate: { len: [1]}
+         },
+         confirmation_num: {
+             type: DataTypes.STRING,
+                    allowNull: true
          }
     },
     {

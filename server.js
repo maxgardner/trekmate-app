@@ -61,7 +61,9 @@ app.use(favicon(path.join(__dirname, 'public/img', 'favicon.ico')));
 
 // Routes
 app.use(require('./routes/api_activity.js')(router, db));
+app.use(require('./routes/api_car_rental.js')(router, db));
 app.use(require('./routes/api_destination.js')(router, db));
+app.use(require('./routes/api_hotel.js')(router, db));
 app.use(require('./routes/api_trips.js')(router, db));
 app.use(require('./routes/dashboard.js')(router, db));
 app.use(require('./routes/login.js')(router, db, passport));

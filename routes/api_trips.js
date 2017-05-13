@@ -6,7 +6,7 @@ module.exports = function(router, db) {
       state: req.body.state,
       departure_date: req.body.departure_date,
       return_date: req.body.return_date,
-      UserId: req.body.userId
+      UserId: req.user.id
     })
     .then(function(newTrip) {
       res.redirect("/dashboard");
