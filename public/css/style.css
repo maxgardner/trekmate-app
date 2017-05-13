@@ -165,3 +165,8 @@ i.wi {
     top: 230px;
     left: 70px;
 }
+.inputStyle { 
+    color: black;
+    width: 10%;
+    font-size: 13px;
+}

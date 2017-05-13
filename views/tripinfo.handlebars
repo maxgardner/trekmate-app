@@ -1,3 +1,4 @@
+
 {{>header}}
 
 <!-- Materialize CSS -->
@@ -7,7 +8,7 @@
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.js"></script>
 
-<div class="container">
+<div class="container" id="david2">
   <div class="row">
 
       <!-- FLIGHT DISPLAY -->
@@ -26,14 +27,17 @@
 
               <div class="card-reveal">
                   <span class="card-title grey-text text-darken-4 reveal-head">Flight<i class="material-icons right">close</i></span>
-
+                  
+                  <ul id="cardReveal">    
                   {{#if trip.flightId }}
                   {{#each flight}}
-                    <p>{{this.flight_number}}</p>
-                    <p>{{this.flight_date}}</p>
-                    <p>{{this.departure}}</p>
+                    <li id="inputStyle">{{this.flight_number}}</lil>
+                    <li id="inputStyle">{{this.flight_date}}</li>
+                    <li id="inputStyle">{{this.departure}}</li>
                   {{/each}}
                   {{/if}}
+                  </ul>
+                  
                   <p id="flightStatus"></p>
               </div>
           </div>
@@ -55,12 +59,16 @@
 
             <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4 reveal-head">Transportation<i class="material-icons right">close</i></span>
-
+              
+                <ul id="cardReveal">
                 {{#if trip.carRentalId }}
                 {{#each carRental }}
-                    <span>{{this.Rental_Comp}}</span>
+                    <li class="inputStyle">{{this.Rental_Comp}}</li>
                 {{/each}}
                 {{/if}}
+                </ul>
+               
+               
 
                 <span id="userCar"></span>
             </div>
@@ -81,14 +89,17 @@
               </div>
               <div class="card-reveal">
                   <span class="card-title grey-text text-darken-4 reveal-head">Hotel<i class="material-icons right">close</i></span>
-
+                
+                <ul id="cardReveal">
                   {{#if trip.hotelId }}
                   {{#each hotel }}
-                      <span>{{this.hotel_name}}</span>
-                      <span>{{this.address}}</span>
-                      <span>{{this.checkin_time}}</span>
+                      <li id="inputStyle">{{this.hotel_name}}</li>
+                      <li id="inputStyle">{{this.address}}</li>
+                      <li id="inputStyle">{{this.checkin_time}}</li>
                   {{/each}}
                   {{/if}}
+                </ul>
+                
 
                   <span id="userHotel"></span>
               </div>
@@ -112,11 +123,12 @@
 
               <div class="card-reveal">
                   <span class="card-title grey-text text-darken-4 reveal-head">Itinerary<i class="material-icons right">close</i></span>
-                  <ul id="event">
+                  
+                  <ul id="cardReveal">
 
                     {{#if trip.activityId }}
                     {{#each activity}}
-                      <li>
+                      <li id="inputStyle">
                         {{this.activity_name}}
                         <p>{{this.description}}</p>
                       </li>
