@@ -4,18 +4,14 @@ module.exports = function(router, db) {
   router.get("/dashboard", isAuthenticated, function(req, res) {
     db.Trip.findAll({
       where: {
-        Userid: req.user.id
-      },
-      // attributes: {
-      //   exclude: ['password']
-      // },
-      include: [db.User]
+        UserId: req.user.id
+      }
     })
     .then(function(tripInfo) {
 
       var info = {
-        trips: tripInfo
-        // user: [userInfo.User]
+        trips: tripInfo,
+        user: req.user
       };
       res.render("dashboard", info);
       //res.json(info);
