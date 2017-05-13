@@ -9,10 +9,10 @@ a:hover {
     color: #fff;
 }
 
-<<<<<<< HEAD
-.david2 { 
+.david2 {
     margin-top:100px
-=======
+}
+
 .david {
     align: right;
     float: right;
@@ -20,7 +20,6 @@ a:hover {
 
 .vidnavbar {
   width: 100%;
->>>>>>> master
 }
 /* Custom default button */
 .btn-default,
@@ -117,11 +116,11 @@ body {
     }
 }
 #cardReveal {
-    width: 90%; 
-    text-align: center; 
-    
+    width: 90%;
+    text-align: center;
+
 }
-#inputStyle { 
+#inputStyle {
     color: black;
     padding: 3px;
 }

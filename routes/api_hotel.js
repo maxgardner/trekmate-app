@@ -1,23 +1,20 @@
 module.exports = function(router, db) {
   router.post("/api/activity", function(req, res) {
-    db.Activity.create(req.body)
-    .then(function(activity) {
-      var newEntry = {
-        activity: activity
-      }
-      res.redirect("/trip/" + activity.TripUuid);
+    db.Hotel.create(req.body)
+    .then(function(hotel) {
+      res.redirect("/trip/" + hotel.TripUuid);
     });
   });
 
   router.put("/api/activity", function(req, res) {
-    db.Activity.update(req.body,
+    db.Hotel.update(req.body,
       {
         where: {
           id: req.body.id
         }
       })
-    .then(function(activity) {
-      res.redirect("/trip/" + activity.TripUuid);
+    .then(function(hotel) {
+      res.redirect("/trip/" + hotel.TripUuid);
     });
   });
 

@@ -1,104 +1,3 @@
-<<<<<<< HEAD
-<!-- Add Car Rental Modal TrekMate 2 -->
-   <div id="addRentalModal" class="modal">
-        <form action="/{{this.id}}?_method=PUT" method="POST" class="modal-content">
-            <h4>Add A Rental Car</h4>
-            <input placeholder="Car Rental Name" id="carRentalName" type="text" class="validate">
-            <input placeholder="Car Rental Confirmation" id="carRentalConfirmation" type="text" class="validate">
-            <!--changed carRentalNumber to carRentalCompany this may effect css?-->
-            <input placeholder="Hertz" id="carRentalCompany" name="Rental_Comp"type="text" >
-        </form>
-        <div class="modal-footer">
-          <a id="addRental" href="#!" class="modal-action waves-effect waves-green btn">Submit</a>
-        </div>
-    </div> 
-
-    
-        <div class="row">
-            <div class="row"></div>
-            <div class="row"></div>
-            <div class="col s4">
-                <div class="card small">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="http://chainimage.com/images/car-wallpapers-free-download-maybach-history-1921-2013.jpg">
-                    </div>
-                    <div class="card-content">
-                    <a class="waves-effect waves-light btn" href="#addRentalModal">Add Rental</a>
-                        <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4 reveal-head">Transportation<i class="material-icons right">close</i></span>
-                        {{#each}}
-                            <span>{{this.Rental_Comp}}</span>
-                            
-
-                        {{/#each}}
-
-                        <span id="userCar"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="col s4"></div>
-            <div class="col s4">
-                <div class="card small">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="http://images.all-free-download.com/images/graphicthumb/tourist_information_sign_192713.jpg">
-                    </div>
-                    <div class="card-content">
-                        <a class="waves-effect waves-light btn" href="#addActivityModal">Add Activity</a>
-                        <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span><br>
-                        <p><a id="googleTour" target="_blank" href="#" >Activity Look Up</a></p>
-
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4 reveal-head">Itinerary<i class="material-icons right">close</i></span>
-                        <ul id="event"></ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> 
-    <!--End Of Car Rental Card, model TRek2-->
-
-    <!-- Add Hotel Modal Card  TrekMate 2-->
-    <div id="addHotelModal" class="modal">
-        <form action="{{this.id}}?_method=PUT" method="POST" class="modal-content">
-          <h4>Add A Hotel</h4>
-          <input placeholder="Hotel Name" name="hotel_name" id="hotelName" type="text" class="validate">
-          <!-- changing phone number to checkIn_Time may mess with css-->
-          <input placeholder="Check In Time" id="hotelNumber" name="checkIn_Time" type="text" class="validate">
-          <input placeholder="Address (Ex. 1900 University Ave Austin TX, 78705)" name="address" id="hotelAddress" type="text" class="validate">
-        </form>
-        <div class="modal-footer">
-          <a id="addHotel" href="#!" class="modal-action waves-effect waves-green btn">Submit</a>
-        </div>
-    </div>
- <div class="col s4"></div>
-            <div class="col s4">
-                <div class="card small">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="http://flashydubai.com/images/jumeirah-beach.jpg">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
-                        <a class="waves-effect waves-light btn" id="add-hotel" href="#addHotelModal">Add Hotel</a>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4 reveal-head">Hotel<i class="material-icons right">close</i></span>
-                        {{#each}}
-                            <span>{{this.hotel_name}}</span>
-                            <span>{{this.address}}</span>
-                            <span>{{this.checkIn_Time}}</span>
-                        {{/#each}}
-                        <span id="userHotel"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-<!--End of the Modal, Card Hotel Trek2 -->
-=======
->>>>>>> master
-
 {{>header}}
 
 <!-- Materialize CSS -->
@@ -109,9 +8,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.js"></script>
 
 
-
 <div class="container">
-
   <div class="row">
 
       <!-- FLIGHT DISPLAY -->
@@ -130,17 +27,14 @@
 
               <div class="card-reveal">
                   <span class="card-title grey-text text-darken-4 reveal-head">Flight<i class="material-icons right">close</i></span>
-                  
-                  <ul id="cardReveal">    
+
                   {{#if trip.flightId }}
                   {{#each flight}}
-                    <li id="inputStyle">{{this.flight_number}}</lil>
-                    <li id="inputStyle">{{this.flight_date}}</li>
-                    <li id="inputStyle">{{this.departure}}</li>
+                    <p>{{this.flight_number}}</p>
+                    <p>{{this.flight_date}}</p>
+                    <p>{{this.departure}}</p>
                   {{/each}}
                   {{/if}}
-                  </ul>
-                  
                   <p id="flightStatus"></p>
               </div>
           </div>
@@ -162,16 +56,12 @@
 
             <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4 reveal-head">Transportation<i class="material-icons right">close</i></span>
-              
-                <ul id="cardReveal">
+
                 {{#if trip.carRentalId }}
                 {{#each carRental }}
-                    <li class="inputStyle">{{this.Rental_Comp}}</li>
+                    <span>{{this.Rental_Comp}}</span>
                 {{/each}}
                 {{/if}}
-                </ul>
-               
-               
 
                 <span id="userCar"></span>
             </div>
@@ -192,17 +82,14 @@
               </div>
               <div class="card-reveal">
                   <span class="card-title grey-text text-darken-4 reveal-head">Hotel<i class="material-icons right">close</i></span>
-                
-                <ul id="cardReveal">
+
                   {{#if trip.hotelId }}
                   {{#each hotel }}
-                      <li id="inputStyle">{{this.hotel_name}}</li>
-                      <li id="inputStyle">{{this.address}}</li>
-                      <li id="inputStyle">{{this.checkin_time}}</li>
+                      <span>{{this.hotel_name}}</span>
+                      <span>{{this.address}}</span>
+                      <span>{{this.checkin_time}}</span>
                   {{/each}}
                   {{/if}}
-                </ul>
-                
 
                   <span id="userHotel"></span>
               </div>
@@ -226,12 +113,11 @@
 
               <div class="card-reveal">
                   <span class="card-title grey-text text-darken-4 reveal-head">Itinerary<i class="material-icons right">close</i></span>
-                  
-                  <ul id="cardReveal">
+                  <ul id="event">
 
                     {{#if trip.activityId }}
                     {{#each activity}}
-                      <li id="inputStyle">
+                      <li>
                         {{this.activity_name}}
                         <p>{{this.description}}</p>
                       </li>
@@ -253,7 +139,6 @@
   </div> <!-- END OF ROW -->
 </div> <!-- END OF CONTAINER -->
 
-
 <script>
     $(document).ready(function () {
         // 3/3 the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
@@ -264,4 +149,3 @@
         $('#addActivityModal').modal();
     });
 </script>
-

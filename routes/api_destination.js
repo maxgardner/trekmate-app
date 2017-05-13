@@ -14,7 +14,7 @@ module.exports = function(router, db) {
         }
       })
     .then(function(destination) {
-      res.redirect("/dashboard");
+      res.redirect("/trip/" + destination.TripUuid);
     });
   });
 
