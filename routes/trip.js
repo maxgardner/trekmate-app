@@ -59,8 +59,8 @@ module.exports = function(router, db) {
                                                         }
 
                                                         console.log(info);
-                                                        res.json(info);
-                                                        //res.render("tripinfo", info);
+                                                        //res.json(info);
+                                                        res.render("tripinfo", info);
                                                     });
                                             });
                                     });
