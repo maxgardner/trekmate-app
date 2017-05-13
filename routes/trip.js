@@ -67,11 +67,10 @@ module.exports = function(router, db) {
         });
       });
     });
-  });
 
-  router.get("/trips", function(req, res) {
-    res.render("tripinfo");
-  });
+    router.get("/trips", function(req, res) {
+        res.render("tripinfo");
+    });
 
-  return router;
+    return router;
 };

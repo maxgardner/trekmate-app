@@ -20,7 +20,7 @@
               </div>
               <div class="card-content">
                 <!-- Add Flight Modal Trigger -->
-                <a class="waves-effect waves-light btn" href="#modal1">Add Flight</a>
+                <a class="waves-effect waves-light btn" href="#addFlightModal">Add Flight</a>
 
                 <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
               </div>
@@ -129,24 +129,23 @@
 
           </div>
       </div>
+      <!--modals-->
+
+      {{> page/addHotelModal }}
+      {{> page/addFlightModal }}
+      {{> page/addRentalModal }}
+      {{> page/addActivityModal }}
 
   </div> <!-- END OF ROW -->
 </div> <!-- END OF CONTAINER -->
 
-<!-- <form action="/{{this.id}}?_method=PUT" method="POST" class="card-content">
-    <a class="waves-effect waves-light btn" href="#addActivityModal">Add Activity</a>
-    <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span><br>
-    <p><a id="googleTour" target="_blank" href="#" >Activity Look Up</a></p>
-     Add Activity Modal -->
-    <!-- <div id="addActivityModal" class="modal">
-      <div class="modal-content">
-          <h4>Add An Activity</h4>
-          <input placeholder="Activity Name" name="activity_name" id="activity_name" type="text" class="validate">
-          <input placeholder="Discription" name="description" id="disription" type="text" class="validate">
-          <input placeholder="Time of Event" name="time_of_event" id="time_of_event" type="text" class="validate">
-      </div>
-      <div class="modal-footer">
-          <button class="modal-action waves-effect waves-green btn" id="addActivity">Submit</button>
-      </div>
-    </div>
-</form> -->
+<script>
+    $(document).ready(function () {
+        // 3/3 the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('#addRentalModal').modal();
+        $('#addTripModal').modal();
+        $('#addFlightModal').modal();
+        $('#addHotelModal').modal();
+        $('#addActivityModal').modal();
+    });
+</script>
