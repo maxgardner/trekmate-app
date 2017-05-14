@@ -25,10 +25,8 @@ function FlightQueryURL(APIname, protocol, version, format, parameters, options)
 }
 
 router.post("/flights", function (req, res) {
-    db.Flight.create({
-        flight_number: req.body.FlightNumber
-    }).then(function (dbFlight) {
-        res.redirect("/trip/" + req.body.tripId);
+    db.Flight.create(req.body).then(function (dbFlight) {
+        res.redirect("/trip/" + req.body.TripUuid);
     });
 });
 
