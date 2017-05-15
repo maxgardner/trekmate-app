@@ -30,8 +30,7 @@ router.post("/flights", function (req, res) {
     });
 });
 
-
-router.post("/flightStats", function (req, res) {
+router.put("/flightStats", function (req, res) {
 
     // flight api
     var flightDate = req.body.flightDate;
@@ -61,8 +60,19 @@ router.post("/flightStats", function (req, res) {
             var hbsObject = {
                 flightStatus: JSON.parse(buffer)
             };
-            //res.json(hbsObject);
-            res.render("tripinfo", hbsObject);
+
+            db.Flight.update({
+                api_departure: hbsObject.flightStatus.flightStatuses[0].departureAirportFsCode,
+                api_arrival: hbsObject.flightStatus.flightStatuses[0].arrivalAirportFsCode,
+                api_status: hbsObject.flightStatus.flightStatuses[0].status
+            }, {
+                where: {
+                    TripUuid: req.body.TripUuid
+                }
+            }).then(function (dbflight) {
+                res.redirect("/trip/" + req.body.TripUuid);
+            });
+
         });
     });
 });

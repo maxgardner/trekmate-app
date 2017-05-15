@@ -56,11 +56,12 @@ module.exports = function(router, db) {
                   hotel: hotel,
                   carRental: carRental,
                   activity: activity
-                }
+                };
 
                 console.log(carRental);
 
                 res.render("tripinfo", info);
+                //res.json(info);
               });
             });
           });
@@ -72,6 +73,8 @@ module.exports = function(router, db) {
   router.get("/trips", function(req, res) {
     res.render("tripinfo");
   });
+
+
 
   return router;
 };

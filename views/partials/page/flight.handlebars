@@ -6,9 +6,10 @@
                 <li>
                     {{this.flight_number}}
 
-                    <form action="/flightStats" method="post">
+                    <form action="/flightStats?_method=PUT" method="POST">
                         <input type="hidden" name="flightNumber" value="{{this.flight_number}}">
                         <input type="hidden" name="flightDate" value="{{this.flight_date}}">
+                        <input type="hidden" name="TripUuid" value="{{this.TripUuid}}">
                         <button class="button submit-btn" type="submit">Flight Informaion</button>
                     </form>
                 </li>
