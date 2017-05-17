@@ -6,13 +6,15 @@
 
 <div id="flightbox">
     <div id="carousel">
-        
+
         <ul>
-            {{#each flight}}
-            <li>Status &nbsp;{{this.api_status}}</li>
-            <li>Departure Airport &nbsp;{{this.api_departure}}</li>
-            <li>Arrival Airport &nbsp;{{this.api_arrival}}</li>
-            {{/each}}
+            {{#if flight}}
+                {{#each flight}}
+                    <li>Status &nbsp;{{this.api_status}}</li>
+                    <li>Departure Airport &nbsp;{{this.api_departure}}</li>
+                    <li>Arrival Airport &nbsp;{{this.api_arrival}}</li>
+                {{/each}}
+            {{/if}}
         </ul>
 
     </div>
