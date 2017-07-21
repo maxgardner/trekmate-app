@@ -115,12 +115,12 @@ body {
         float: right;
     }
 }
-#cardReveal {
+.cardReveal {
     width: 90%;
     text-align: center;
 
 }
-#inputStyle {
+.inputStyle {
     color: black;
     padding: 3px;
 }

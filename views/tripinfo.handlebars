@@ -55,14 +55,14 @@
                     <span class="card-title grey-text text-darken-4 reveal-head">Transportation<i
                             class="material-icons right">close</i></span>
 
-                    <ul>
                     {{#if carRental }}
                         {{#each carRental }}
-                            <li>{{this.rental_comp}}</li>
-                            <li>{{this.confirmation_num}}</li>
+                        <ul class="cardReveal">
+                            <h6 class="inputStyle"><strong>{{this.rental_comp}}</strong></h6>
+                            <li class="inputStyle"><em>Confirmation: </em>{{this.confirmation_num}}</li>
+                        </ul>
                         {{/each}}
                     {{/if}}
-                  </ul>
 
                     <span id="userCar"></span>
                 </div>
@@ -84,15 +84,15 @@
                 </div>
                 <div class="card-reveal">
                     <span class="card-title grey-text text-darken-4 reveal-head">Hotel<i class="material-icons right">close</i></span>
-                    <ul>
                     {{#if hotel }}
                         {{#each hotel }}
-                            <li>{{this.hotel_name}}</li>
-                            <li>{{this.address}}</li>
-                            <li>{{this.checkin_time}}</li>
+                        <ul class="cardReveal">
+                            <h6 class="inputStyle"><strong>{{this.hotel_name}}</strong></h6>
+                            <li class="inputStyle">{{this.address}}</li>
+                            <li class="inputStyle"><em>Check In:</em> {{this.checkin_time}}</li>
+                        </ul>
                         {{/each}}
                     {{/if}}
-                  </ul>
 
                     <span id="userHotel"></span>
                 </div>
@@ -119,18 +119,15 @@
                 <div class="card-reveal">
                     <span class="card-title grey-text text-darken-4 reveal-head">Itinerary<i
                             class="material-icons right">close</i></span>
-                    <ul id="event">
 
                         {{#if activity }}
                             {{#each activity}}
-                                <li>
-                                    {{this.activity_name}}
-                                    <p>{{this.description}}</p>
-                                </li>
+                            <ul id="event" class="cardReveal" >
+                                <h6 class="inputStyle"><strong>{{this.activity_name}}</strong></h6>
+                                <li class="inputStyle">{{this.description}}</li>
+                            </ul>
                             {{/each}}
                         {{/if}}
-
-                    </ul>
                 </div>
 
             </div>

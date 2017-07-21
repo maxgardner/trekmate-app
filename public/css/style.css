@@ -25,6 +25,15 @@ h1 {
     font-weight: bolder;
 
 }
+#cardReveal {
+    width: 90%;
+    text-align: center;
+
+}
+#inputStyle {
+    color: black;
+    padding: 3px;
+}
 
 .nav-links {
     margin-top: 30px;
