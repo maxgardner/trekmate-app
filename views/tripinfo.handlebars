@@ -30,7 +30,6 @@
                     <span class="card-title grey-text text-darken-4"><i
                             class="material-icons right">close</i></span>
                     {{> page/flight }}
-                    {{> page/flightStats }}
                 </div>
             </div>
         </div>
@@ -57,10 +56,10 @@
 
                     {{#if carRental }}
                         {{#each carRental }}
-                        <ul class="cardReveal">
-                            <h6 class="inputStyle"><strong>{{this.rental_comp}}</strong></h6>
-                            <li class="inputStyle"><em>Confirmation: </em>{{this.confirmation_num}}</li>
-                        </ul>
+                            <ul class="cardReveal">
+                                <h6 class="inputStyle"><strong>{{this.rental_comp}}</strong></h6>
+                                <li class="inputStyle"><em>Confirmation: </em>{{this.confirmation_num}}</li>
+                            </ul>
                         {{/each}}
                     {{/if}}
 
@@ -86,11 +85,11 @@
                     <span class="card-title grey-text text-darken-4 reveal-head">Hotel<i class="material-icons right">close</i></span>
                     {{#if hotel }}
                         {{#each hotel }}
-                        <ul class="cardReveal">
-                            <h6 class="inputStyle"><strong>{{this.hotel_name}}</strong></h6>
-                            <li class="inputStyle">{{this.address}}</li>
-                            <li class="inputStyle"><em>Check In:</em> {{this.checkin_time}}</li>
-                        </ul>
+                            <ul class="cardReveal">
+                                <h6 class="inputStyle"><strong>{{this.hotel_name}}</strong></h6>
+                                <li class="inputStyle">{{this.address}}</li>
+                                <li class="inputStyle"><em>Check In:</em> {{this.checkin_time}}</li>
+                            </ul>
                         {{/each}}
                     {{/if}}
 
@@ -120,14 +119,14 @@
                     <span class="card-title grey-text text-darken-4 reveal-head">Itinerary<i
                             class="material-icons right">close</i></span>
 
-                        {{#if activity }}
-                            {{#each activity}}
+                    {{#if activity }}
+                        {{#each activity}}
                             <ul id="event" class="cardReveal" >
                                 <h6 class="inputStyle"><strong>{{this.activity_name}}</strong></h6>
                                 <li class="inputStyle">{{this.description}}</li>
                             </ul>
-                            {{/each}}
-                        {{/if}}
+                        {{/each}}
+                    {{/if}}
                 </div>
 
             </div>
